@@ -4,7 +4,8 @@
   "description": "Project 1 UI",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsc && cp ./src/index.html ./build/index.html && cp ./src/index.css ./build/index.css && http-server -p 3000 ./build",
+    "build": "tsc && cp ./src/index.html ./build/index.html && cp ./src/index.css ./build/index.css"
   },
   "repository": {
     "type": "git",
