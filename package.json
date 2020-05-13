@@ -1,22 +1,40 @@
 {
-  "name": "kennedy_wandelt_p1_ui",
-  "version": "1.0.0",
-  "description": "Project 1 UI",
-  "main": "index.js",
+  "name": "my-demo-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.9.14",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.12.38",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "axios": "^0.19.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "typescript": "^3.7.5"
+  },
   "scripts": {
-    "start": "tsc && cp ./src/index.html ./build/index.html && cp ./src/index.css ./build/index.css && http-server -p 3000 ./build",
-    "build": "tsc && cp ./src/index.html ./build/index.html && cp ./src/index.css ./build/index.css"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/200406-java-react-usf/Kennedy_Wandelt_p1_ui.git"
+  "eslintConfig": {
+    "extends": "react-app"
   },
-  "author": "Kennedy Wandelt",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/200406-java-react-usf/Kennedy_Wandelt_p1_ui/issues"
-  },
-  "homepage": "https://github.com/200406-java-react-usf/Kennedy_Wandelt_p1_ui#readme",
-  "devDependencies": {},
-  "dependencies": {}
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
