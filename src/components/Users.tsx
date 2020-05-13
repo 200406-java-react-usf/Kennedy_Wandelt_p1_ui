@@ -1,15 +1,11 @@
 import React from 'react';
 import {getUsers} from '../remote/user-service'
+import {UserData} from './Data'
 
-interface IUsersState {
-    users: [];
-}
-
-export class UserTable extends React.Component<any, IUsersState> {
+export class UserTable extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            users: []
         }
     }
 
@@ -18,7 +14,7 @@ export class UserTable extends React.Component<any, IUsersState> {
             <>
             <div>
             <button>Home</button>
-            <h1 onClick={getUsers}>Users</h1>
+            <h1>Users</h1>
             </div>
             <div>
             <table className="table table-hover">
@@ -33,6 +29,7 @@ export class UserTable extends React.Component<any, IUsersState> {
                     </tr>
                 </thead>
                 <tbody>
+                <UserData />
                 </tbody>
             </table>
         </div>
