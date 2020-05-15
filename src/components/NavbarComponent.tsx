@@ -33,7 +33,7 @@ const NavbarComponent = (props: INavbarProps) => {
 
                         <></>
                     }
-                    {(props.authUser && props.authUser.role_name === 'admin')?
+                    {/* {(props.authUser && props.authUser.role_name === 'admin')? */}
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Admin Dashboard
@@ -42,9 +42,9 @@ const NavbarComponent = (props: INavbarProps) => {
                             <a className="dropdown-item" href="#">All Users</a>
                             <a className="dropdown-item" href="/new-user">Add New User</a>
                             </div>
-                        </li>:
-                        <></>
-                    }
+                        </li>
+
+                    {/* } */}
                     {(props.authUser && props.authUser.role_name === 'fmanager')?
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

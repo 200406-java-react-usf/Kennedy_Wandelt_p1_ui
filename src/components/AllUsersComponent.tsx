@@ -1,12 +1,34 @@
 import React from 'react';
 import './HomeComponent.css';
 import { User } from '../models/user';
+import { getUsers } from '../remote/user-service';
 
-interface IUsersProps {
-    authUser: User;
-}
+// interface IUsersProps {
+//     authUser: User;
+// }
 
-const HomeComponent = (props: IUsersProps) => {
+function AllUsersComponent(props: any) {
+    let allUsers = getUsers();
+    console.log(allUsers);
+    
+    let userRows: any[] = [];
+
+    // async getAllUsers
+
+    // @ts-ignore
+    // for(let user of allUsers) {
+    //    userRows.push(
+    //        <tr>
+    //            <th scope="row">{user.ers_user_id}</th>
+    //            <td>{user.first_name}</td>
+    //            <td>{user.last_name}</td>
+    //            <td>{user.username}</td>
+    //            <td>{user.password}</td>
+    //            <td>{user.email}</td>
+    //            <td>{user.role_name}</td>
+    //        </tr>
+    //    ) 
+    // }
 
     return (
         <>
@@ -14,8 +36,8 @@ const HomeComponent = (props: IUsersProps) => {
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
                         <th scope="col">Username</th>
                         <th scope="col">Password</th>
                         <th scope="col">Email</th>
@@ -23,12 +45,7 @@ const HomeComponent = (props: IUsersProps) => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
+                    {userRows}
                 </tbody>
             </table>
         </>
@@ -36,4 +53,4 @@ const HomeComponent = (props: IUsersProps) => {
 
 }
 
-export default HomeComponent;
+export default AllUsersComponent;

@@ -8,7 +8,7 @@ async function authenticate(username: string, password: string) {
 
 async function logout(){
     let response = await projectClient.get('/auth');
-    return response;
+    return await response;
 }
 
 export {

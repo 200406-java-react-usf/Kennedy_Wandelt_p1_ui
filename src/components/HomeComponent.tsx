@@ -1,13 +1,13 @@
 import React from 'react';
 import './HomeComponent.css';
 import { User } from '../models/user';
+import { getUsers } from '../remote/user-service'
 
 interface IHomeProps {
     authUser: User;
 }
 
-const HomeComponent = (props: IHomeProps) => {
-
+function HomeComponent(props: IHomeProps){
     return (
         <>
             <div className="background flex">
@@ -19,6 +19,7 @@ const HomeComponent = (props: IHomeProps) => {
                     <p className="lead">A system where employees, admin, and financial managers can manage reimbursements</p>
                     <hr className="my-4"/>
                     <p>Employees can access their own reimbursements or make new ones which can be approved by financial managers. Login to see your reimbursements!</p>
+                    <button onClick={getUsers}>getUsers</button>
                     {!props.authUser ?
                         <a className="btn btn-primary btn-lg" href="/login" role="button">Login</a>:
                         <a className="btn btn-primary btn-lg" href="/my-reimbs" role="button">My Reimbursements</a>
