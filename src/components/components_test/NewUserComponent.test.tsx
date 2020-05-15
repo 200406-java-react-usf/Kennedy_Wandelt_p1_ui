@@ -7,8 +7,6 @@ import { FormControl, Button } from '@material-ui/core';
 const props: IRegProps = {
     authUser: {ers_user_id: 1, username: 'test', password: 'password', first_name: 'testy', last_name: 'testerson', email: 'admin@test.com', role_name: 'admin'},
     newUser: undefined,
-    errorMessage: '',
-    newUserAction: jest.fn()  
 }
 
 describe('<NewUserComponent />', () => {
@@ -43,45 +41,41 @@ describe('<NewUserComponent /> input fields value update', () => {
         expect(wrapper.find('input#firstname').prop('value')).toEqual('newfn');
     });
 
-    // it('should call prop register action when button is clicked', () => {
-    //     wrapper.find('button').simulate('click');
-    //     expect(props.registerAction).toBeCalled();
-    // })
 });
 
 //white box testing - tests internl behavior  (cannot see from outside)
 //blackbox testing - only tests input and output side affects 
 
-describe('state management', () => {
+// describe('state management', () => {
 
-    const setState = jest.fn();
-    const userStateMock: any = (init:any) => []
+//     const setState = jest.fn();
+//     const userStateMock: any = (init:any) => []
     
-    afterEach(() => {
-        jest.clearAllMocks();
-    });
+//     afterEach(() => {
+//         jest.clearAllMocks();
+//     });
 
-    it('calls setState when #firstname  cahnged', () => {
-        jest.spyOn(React, 'useState').mockImplementation(userStateMock);
+//     it('calls setState when #firstname  cahnged', () => {
+//         jest.spyOn(React, 'useState').mockImplementation(userStateMock);
 
-        let wrapper = mount(<NewUserComponent {...props} />);
+//         let wrapper = mount(<NewUserComponent {...props} />);
 
-        wrapper.find('input#firstname').simulate('change', {
-            target: { value: 'Abby'}
-        });
+//         wrapper.find('input#firstname').simulate('change', {
+//             target: { value: 'Abby'}
+//         });
 
-        expect(wrapper).toBeCalledWith('Abby');
-    });
+//         expect(wrapper).toBeCalledWith('Abby');
+//     });
 
-    it('calls setstate when #lastName change', () => {
-        jest.spyOn(React, 'useState').mockImplementation(userStateMock);
+//     it('calls setstate when #lastName change', () => {
+//         jest.spyOn(React, 'useState').mockImplementation(userStateMock);
 
-        let wrapper = mount(<NewUserComponent {...props} />);
+//         let wrapper = mount(<NewUserComponent {...props} />);
 
-        wrapper.find('input#lastname').simulate('change', {
-            target: {value: 'Robertson'}
-        });
+//         wrapper.find('input#lastname').simulate('change', {
+//             target: {value: 'Robertson'}
+//         });
 
-        expect(wrapper).toBeCalledWith('Robertson');
-    });
-});
+//         expect(wrapper).toBeCalledWith('Robertson');
+//     });
+// });

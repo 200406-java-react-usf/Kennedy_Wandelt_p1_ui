@@ -1,14 +1,12 @@
 import React, {useState} from 'react';
 import {Typography, FormControl, InputLabel, Input, Button, NativeSelect, makeStyles} from '@material-ui/core';
-import { registerUser } from '../remote/user-service';
+import { addNewUser } from '../remote/user-service';
 import { User } from '../models/user';
 
 
 export interface IRegProps {
     authUser: User,
     newUser: User | undefined,
-    errorMessage: string,
-    newUserAction: (newUser: User) => void;
 }
 
 const useStyles = makeStyles({
@@ -73,7 +71,7 @@ function NewUserComponent (props: IRegProps) {
             setErrorMessage('All fields are required to create a new user')
         }
         let user = new User(id, username, password, firstname, lastname, email, role);
-        let newUser = await registerUser(user);
+        let newUser = await addNewUser(user);
     }
 
     return (

@@ -23,7 +23,7 @@ function App() {
       <Switch>
         <Route path="/home" render={() => <HomeComponent authUser={authUser} /> } />
         <Route path="/login" render={() => <LoginComponent authUser={authUser} setAuthUser={setAuthUser} /> } />
-        <Route path="/new-user" render={() => <NewUserComponent  newUser={undefined} /> } />
+        <Route path="/new-user" render={() => <NewUserComponent  authUser={authUser} newUser={undefined} /> } />
       </Switch>
       </Router>
     </>
