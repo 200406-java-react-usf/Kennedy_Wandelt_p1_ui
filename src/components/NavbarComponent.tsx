@@ -1,14 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import { 
-    makeStyles, 
-    List, 
-    ListItem, 
-    Typography, 
-    ListItemText 
-} from '@material-ui/core';
-
 import { User } from '../models/user';
 
 interface INavbarProps {
@@ -33,12 +24,6 @@ const NavbarComponent = (props: INavbarProps) => {
                 <div className="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul className="navbar-nav">
                     <li className="nav-item">
-                        <a className="nav-link" href="/home">Home</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="/login">Login</a>
-                    </li>
-                    <li className="nav-item">
                         <a className="nav-link" href="/my-reimbs">My Reimbursements</a>
                     </li>
                     <li className="nav-item dropdown">
@@ -61,6 +46,14 @@ const NavbarComponent = (props: INavbarProps) => {
                         <a className="dropdown-item" href="#">Something else here</a>
                         </div>
                     </li>
+                    </ul>
+                </div>
+                <div className="navbar-collapse">
+                    <ul className="navbar-nav ml-auto">
+                        <li className="nav-item">
+                            <a className="nav-link" href="/login">Login</a>
+                        </li>
+
                     </ul>
                 </div>
             </nav>

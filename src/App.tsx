@@ -25,38 +25,17 @@ function App() {
   // @ts-ignore
   const [authUser, setAuthUser] = useState(null as User);
 
-  const mockReimbs = [
-    {
-      id:1,
-      amount: '300.00',
-      description: 'new laptop'
-    },
-    {
-      id:2,
-      amount: '6000.00',
-      description: 'new car'
-    },
-    {
-      id:3,
-      amount: '80.00',
-      description: 'hotel'
-    }
-  ]
-
   return (
     <>
     <Router>
-      {/* {!authUser ?
-      <Redirect to="/login" /> :
-      <></>
-      } */}
-        <NavbarComponent authUser={authUser}/>
 
-        <Switch>
-          <Route path="/home" render={() => <HomeComponent un={authUser?.un} /> } />
-          <Route path="/login" render={() => <LoginComponent authUser={authUser} setAuthUser={setAuthUser} /> } />
-          <Route path="/register" render={() => <RegisterComponent/> } />
-        </Switch>
+      <NavbarComponent authUser={authUser}/>
+
+      <Switch>
+        <Route path="/home" render={() => <HomeComponent un={authUser?.un} /> } />
+        <Route path="/login" render={() => <LoginComponent authUser={authUser} setAuthUser={setAuthUser} /> } />
+        <Route path="/register" render={() => <RegisterComponent/> } />
+      </Switch>
       </Router>
     </>
   );

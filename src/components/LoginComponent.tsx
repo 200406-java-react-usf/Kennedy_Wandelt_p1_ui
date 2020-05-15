@@ -24,7 +24,7 @@ const useStyles = makeStyles({
         display: "flex",
         justifyContent: "center",
         margin: 20,
-        marginTop: 40,
+        marginTop: 20,
         padding: 20
     },
     loginForm: {
@@ -60,38 +60,42 @@ function LoginComponent(props: ILoginProps) {
         props.authUser ?
         <Redirect to="/home" /> :
         <>
-            <div className={classes.loginContainer}>
-                <form className={classes.loginForm}>
-                    <Typography align="center" variant="h4">Login</Typography>
+            <div className="background-login">
+                <div className="jumbotron-login">
+                    <div className={classes.loginContainer}>
+                        <form className={classes.loginForm}>
+                            <h1 className="display-4">Login</h1>
 
-                    <FormControl margin="normal" fullWidth>
-                        <InputLabel htmlFor="username">Username</InputLabel>
-                        <Input 
-                            onChange={updateUsername} 
-                            value={username} 
-                            id="username" type="text" 
-                            placeholder="Enter your username" />
-                    </FormControl>
+                            <FormControl margin="normal" fullWidth>
+                                <InputLabel htmlFor="username">Username</InputLabel>
+                                <Input 
+                                    onChange={updateUsername} 
+                                    value={username} 
+                                    id="username" type="text" 
+                                    placeholder="Enter your username" />
+                            </FormControl>
 
-                    <FormControl margin="normal" fullWidth>
-                        <InputLabel htmlFor="password">Password</InputLabel>
-                        <Input 
-                            onChange={updatePassword}
-                            value={password}
-                            id="password" type="password"
-                            placeholder="Enter your password"/>
-                    </FormControl>
-                    <br/><br/>
-                    <Button onClick={login} variant="contained" color="secondary" size="medium">Login</Button>
-                    <br/><br/>
-                    {
-                        errorMessage 
-                            ? 
-                        <span style={{color:"red"}}>{errorMessage}</span>
-                            :
-                        <></>
-                    }
-                </form>
+                            <FormControl margin="normal" fullWidth>
+                                <InputLabel htmlFor="password">Password</InputLabel>
+                                <Input 
+                                    onChange={updatePassword}
+                                    value={password}
+                                    id="password" type="password"
+                                    placeholder="Enter your password"/>
+                            </FormControl>
+                            <br/><br/>
+                            <a className="btn btn-primary btn-lg" style={{color: 'white'}}onClick={login} role="button">Login</a>
+                            <br/><br/>
+                            {
+                                errorMessage 
+                                    ? 
+                                <span style={{color:"red"}}>{errorMessage}</span>
+                                    :
+                                <></>
+                            }
+                        </form>
+                    </div>
+                </div>
             </div>
         </> 
     );
