@@ -42,7 +42,7 @@ function NewUserComponent (props: IRegProps) {
             case 'firstname':
                 setFirstName(e.target.value);
                 break;
-            case 'lastName':
+            case 'lastname':
                 setLastName(e.target.value);
                 break;
             case 'email':
@@ -79,7 +79,7 @@ function NewUserComponent (props: IRegProps) {
         <>
         <div className={classes.loginContainer}>
             <form className={classes.loginForm}>
-                <Typography align="center" variant="h4">Revaboards Registration</Typography>
+                <Typography align="left" variant="h4">New User</Typography>
 
                 <FormControl margin="normal" fullWidth>
                     <InputLabel htmlFor="firstname">First Name</InputLabel>
@@ -98,6 +98,7 @@ function NewUserComponent (props: IRegProps) {
                         id="lastname" type="text" 
                         placeholder="Last Name" />
                 </FormControl>
+                
 
                 <FormControl margin="normal" fullWidth>
                     <InputLabel htmlFor="username">Username</InputLabel>
@@ -137,7 +138,7 @@ function NewUserComponent (props: IRegProps) {
                 </FormControl>
 
                 <br/><br/>
-                <Button onClick={register} variant="contained" color="primary" size="medium">Register</Button>
+                <Button onClick={register} variant="contained" color="primary" size="medium">Create User</Button>
                 <br/><br/>
                 {
                     errorMessage 
