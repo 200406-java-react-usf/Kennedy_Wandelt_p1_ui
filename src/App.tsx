@@ -21,9 +21,9 @@ function App() {
       <NavbarComponent authUser={authUser}/>
 
       <Switch>
-        <Route path="/home" render={() => <HomeComponent un={authUser?.username} /> } />
+        <Route path="/home" render={() => <HomeComponent authUser={authUser} /> } />
         <Route path="/login" render={() => <LoginComponent authUser={authUser} setAuthUser={setAuthUser} /> } />
-        <Route path="/new-user" render={() => <NewUserComponent  authUser={authUser} /> } />
+        <Route path="/new-user" render={() => <NewUserComponent  newUser={undefined} /> } />
       </Switch>
       </Router>
     </>

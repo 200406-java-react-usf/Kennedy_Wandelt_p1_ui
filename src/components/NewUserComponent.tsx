@@ -5,7 +5,7 @@ import { User } from '../models/user';
 
 
 export interface IRegProps {
-    authUser: User
+    newUser: User | undefined
 }
 
 const useStyles = makeStyles({
@@ -66,7 +66,7 @@ function NewUserComponent (props: IRegProps) {
 
     let register = async () => {
         if(username === '' || password === '' || firstname === '' || lastname === '' || email === ''){
-            setErrorMessage('All fields are required to register')
+            setErrorMessage('All fields are required to create a new user')
         }
         let user = new User(id, username, password, firstname, lastname, email, role);
         let newUser = await registerUser(user);
@@ -152,6 +152,4 @@ function NewUserComponent (props: IRegProps) {
 
 }
 
-export default {
-    NewUserComponent,
-}
+export default NewUserComponent

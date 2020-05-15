@@ -36,9 +36,8 @@ const NavbarComponent = (props: INavbarProps) => {
                             Admin Dashboard
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a className="dropdown-item" href="#">Action</a>
-                            <a className="dropdown-item" href="#">Another action</a>
-                            <a className="dropdown-item" href="#">Something else here</a>
+                            <a className="dropdown-item" href="#">All Users</a>
+                            <a className="dropdown-item" href="/new-user">Add New User</a>
                             </div>
                         </li>:
                         <></>
@@ -49,9 +48,8 @@ const NavbarComponent = (props: INavbarProps) => {
                             Financial Dashboard
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a className="dropdown-item" href="#">Action</a>
-                            <a className="dropdown-item" href="#">Another action</a>
-                            <a className="dropdown-item" href="#">Something else here</a>
+                            <a className="dropdown-item" href="#">All Reimbursements</a>
+                            <a className="dropdown-item" href="#">Pending Reimbursements</a>
                             </div>
                         </li>:
                         <></>
