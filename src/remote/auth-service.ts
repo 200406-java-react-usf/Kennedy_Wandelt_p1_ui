@@ -1,10 +1,7 @@
-import { projectClient } from "./revaboards-client";
+  
+import { revaboardsClient } from "./revaboards-client";
 
-export async function login(username: string, password: string){
-    try {
-        let resp = await projectClient.post('/')
-        console.log(resp)
-    } catch (e){
-        console.log(e)
-    }
+export async function authenticate(username: string, password: string) {
+    let response = await revaboardsClient.post('/auth', {username, password});
+    return await response.data;
 }
