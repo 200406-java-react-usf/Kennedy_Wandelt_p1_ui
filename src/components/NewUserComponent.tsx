@@ -5,7 +5,10 @@ import { User } from '../models/user';
 
 
 export interface IRegProps {
-    newUser: User | undefined
+    authUser: User,
+    newUser: User | undefined,
+    errorMessage: string,
+    newUserAction: (newUser: User) => void;
 }
 
 const useStyles = makeStyles({
@@ -35,28 +38,29 @@ function NewUserComponent (props: IRegProps) {
     const [role, setRole] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    let updateUsername = (e: any) => {
-        setUsername(e.currentTarget.value);
-    }
-
-    let updatePassword = (e: any) => {
-        setPassword(e.currentTarget.value);
-    }
-
-    let updateFirstName = (e: any) => {
-        setFirstName(e.currentTarget.value);
-    }
-
-    let updateLastName = (e: any) => {
-        setLastName(e.currentTarget.value);
-    }
-
-    let updateEmail = (e: any) => {
-        setEmail(e.currentTarget.value);
-    }
-
-    let updateRole = (e: any) => {
-        setRole(e.currentTarget.value);
+    let updateField = (e: any) => {
+        switch (e.currentTarget.id) {
+            case 'firstname':
+                setFirstName(e.target.value);
+                break;
+            case 'lastName':
+                setLastName(e.target.value);
+                break;
+            case 'email':
+                setEmail(e.target.value);
+                break;
+            case 'username':
+                setUsername(e.target.value);
+                break;  
+            case 'password':
+                setPassword(e.target.value);
+                break;
+            case 'role':
+                setRole(e.target.value);
+                break;
+            default:
+                console.warn(`Improper binding detected on element with id: ${e.currentTarget.id}`); 
+        }
     }
 
     let updateErrorMessage = (e: any) => {
@@ -81,7 +85,7 @@ function NewUserComponent (props: IRegProps) {
                 <FormControl margin="normal" fullWidth>
                     <InputLabel htmlFor="firstname">First Name</InputLabel>
                     <Input 
-                        onChange={updateFirstName} 
+                        onChange={updateField} 
                         value={firstname} 
                         id="firstname" type="text" 
                         placeholder="First Name" />
@@ -90,7 +94,7 @@ function NewUserComponent (props: IRegProps) {
                 <FormControl margin="normal" fullWidth>
                     <InputLabel htmlFor="lastname">Last Name</InputLabel>
                     <Input 
-                        onChange={updateLastName} 
+                        onChange={updateField} 
                         value={lastname} 
                         id="lastname" type="text" 
                         placeholder="Last Name" />
@@ -99,7 +103,7 @@ function NewUserComponent (props: IRegProps) {
                 <FormControl margin="normal" fullWidth>
                     <InputLabel htmlFor="username">Username</InputLabel>
                     <Input 
-                        onChange={updateUsername} 
+                        onChange={updateField} 
                         value={username} 
                         id="username" type="text" 
                         placeholder="Username" />
@@ -108,7 +112,7 @@ function NewUserComponent (props: IRegProps) {
                 <FormControl margin="normal" fullWidth>
                     <InputLabel htmlFor="password">Password</InputLabel>
                     <Input 
-                        onChange={updatePassword}
+                        onChange={updateField}
                         value={password}
                         id="password" type="password"
                         placeholder="password"/>
@@ -117,7 +121,7 @@ function NewUserComponent (props: IRegProps) {
                 <FormControl margin="normal" fullWidth>
                     <InputLabel htmlFor="email">Email</InputLabel>
                     <Input 
-                        onChange={updateEmail} 
+                        onChange={updateField} 
                         value={email} 
                         id="email" type="text" 
                         placeholder="Email" />
@@ -128,7 +132,7 @@ function NewUserComponent (props: IRegProps) {
                 <FormControl margin="normal" fullWidth>
                     <InputLabel shrink htmlFor="age-native-label-placeholder">Role</InputLabel>
 
-                    <NativeSelect value={role} onClick={updateRole} inputProps={{name: 'role', id: 'role-selector',}}>
+                    <NativeSelect value={role} onClick={updateField} inputProps={{name: 'role', id: 'role-selector',}}>
                         <option value={'1'}>Employee</option>
                         <option value={'2'}>Financial Manager</option>
                         <option value={'3'}>Admin</option>

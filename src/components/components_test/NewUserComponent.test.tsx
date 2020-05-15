@@ -1,11 +1,14 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow, mount, ReactWrapper } from 'enzyme';
 import NewUserComponent, {IRegProps} from '../NewUserComponent';
 import { User } from '../../models/user';
 import { FormControl, Button } from '@material-ui/core';
 
 const props: IRegProps = {
-    newUser: undefined  
+    authUser: {ers_user_id: 1, username: 'test', password: 'password', first_name: 'testy', last_name: 'testerson', email: 'admin@test.com', role_name: 'admin'},
+    newUser: undefined,
+    errorMessage: '',
+    newUserAction: jest.fn()  
 }
 
 describe('<NewUserComponent />', () => {
@@ -34,9 +37,51 @@ describe('<NewUserComponent /> input fields value update', () => {
     
 
     it('Triggering change on fn input updates value with event payload', () => {
-        wrapper.find('input#firstName').simulate('change', {
+        wrapper.find('input#firstname').simulate('change', {
             target: {value: 'newfn'}
         });
-        expect(wrapper.find('input#firstName').prop('value')).toEqual('newfn');
-    })
-})
+        expect(wrapper.find('input#firstname').prop('value')).toEqual('newfn');
+    });
+
+    // it('should call prop register action when button is clicked', () => {
+    //     wrapper.find('button').simulate('click');
+    //     expect(props.registerAction).toBeCalled();
+    // })
+});
+
+//white box testing - tests internl behavior  (cannot see from outside)
+//blackbox testing - only tests input and output side affects 
+
+describe('state management', () => {
+
+    const setState = jest.fn();
+    const userStateMock: any = (init:any) => []
+    
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it('calls setState when #firstname  cahnged', () => {
+        jest.spyOn(React, 'useState').mockImplementation(userStateMock);
+
+        let wrapper = mount(<NewUserComponent {...props} />);
+
+        wrapper.find('input#firstname').simulate('change', {
+            target: { value: 'Abby'}
+        });
+
+        expect(wrapper).toBeCalledWith('Abby');
+    });
+
+    it('calls setstate when #lastName change', () => {
+        jest.spyOn(React, 'useState').mockImplementation(userStateMock);
+
+        let wrapper = mount(<NewUserComponent {...props} />);
+
+        wrapper.find('input#lastname').simulate('change', {
+            target: {value: 'Robertson'}
+        });
+
+        expect(wrapper).toBeCalledWith('Robertson');
+    });
+});
