@@ -3,23 +3,13 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 
 import LoginComponent from './components/LoginComponent';
 import HomeComponent from './components/HomeComponent';
-import RegisterComponent from './components/RegisterComponent';
+import NewUserComponent from './components/NewUserComponent';
 
 import { User } from './models/user';
 import NavbarComponent from './components/NavbarComponent';
 import { AppBar, Toolbar, Typography, createMuiTheme, ThemeProvider } from '@material-ui/core';
 
 function App() {
-  // const theme = createMuiTheme({
-  //   palette: {
-  //     primary: {
-  //       main:'#424242',
-  //     },
-  //     secondary: {
-  //       main: '#ff9100'
-  //     }
-  //   }
-  // })
 
 
   // @ts-ignore
@@ -28,13 +18,12 @@ function App() {
   return (
     <>
     <Router>
-
       <NavbarComponent authUser={authUser}/>
 
       <Switch>
-        <Route path="/home" render={() => <HomeComponent un={authUser?.un} /> } />
+        <Route path="/home" render={() => <HomeComponent un={authUser?.username} /> } />
         <Route path="/login" render={() => <LoginComponent authUser={authUser} setAuthUser={setAuthUser} /> } />
-        <Route path="/register" render={() => <RegisterComponent/> } />
+        <Route path="/new-user" render={() => <NewUserComponent  authUser={authUser} /> } />
       </Switch>
       </Router>
     </>

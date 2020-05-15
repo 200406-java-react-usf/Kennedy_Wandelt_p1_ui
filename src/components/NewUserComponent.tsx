@@ -4,10 +4,9 @@ import { registerUser } from '../remote/user-service';
 import { User } from '../models/user';
 
 
-// interface IRegProps {
-//     newUser: User
-//     setNewUser: (user: User) => void;
-// }
+export interface IRegProps {
+    authUser: User
+}
 
 const useStyles = makeStyles({
     loginContainer: {
@@ -23,7 +22,7 @@ const useStyles = makeStyles({
 });
 
 
-const RegisterComponent = (props: any) => {
+function NewUserComponent (props: IRegProps) {
 
     const classes = useStyles();
 
@@ -153,4 +152,6 @@ const RegisterComponent = (props: any) => {
 
 }
 
-export default RegisterComponent;
+export default {
+    NewUserComponent,
+}
