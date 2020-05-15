@@ -124,8 +124,6 @@ function NewUserComponent (props: IRegProps) {
                         value={email} 
                         id="email" type="text" 
                         placeholder="Email" />
-
-
                 </FormControl>
 
                 <FormControl margin="normal" fullWidth>
