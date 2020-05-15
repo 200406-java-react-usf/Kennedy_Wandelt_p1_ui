@@ -1,18 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { User } from '../models/user';
+import {logout} from '../remote/auth-service';
 
 interface INavbarProps {
     authUser: User;
+    setAuthUser: (user: User) => void
 }
 
 
 const NavbarComponent = (props: INavbarProps) => {
+    console.log(props.authUser);
 
-    let dropDown = (e: any) => {
-        e.currentTarget.setAttribute("dropdown", true);
+    let logoutUser = async () => {
+        let authUser = await logout();
+        //props.setAuthUser();
     }
-
 
     return (
         <>
@@ -69,7 +72,7 @@ const NavbarComponent = (props: INavbarProps) => {
                      <div className="navbar-collapse">
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item">
-                                <a className="nav-link" href="/login">Logout</a>
+                                <a className="nav-link" onClick={logoutUser}>Logout</a>
                             </li>
                         </ul>
                     </div>

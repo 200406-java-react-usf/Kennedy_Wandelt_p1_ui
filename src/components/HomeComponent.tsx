@@ -10,7 +10,7 @@ const HomeComponent = (props: IHomeProps) => {
 
     return (
         <>
-            <div className="background">
+            <div className="background flex">
                 <div className="jumbotron">
                     {!props.authUser ? 
                         <h1 className="display-4">Welcome to ERS</h1>:

@@ -49,9 +49,6 @@ function LoginComponent(props: ILoginProps) {
     }
 
     let login = async () => {
-        if(username === '' || password === ''){
-            setErrorMessage('Both username and password mut be entered to login.')
-        }
         let authUser = await authenticate(username, password);
         props.setAuthUser(authUser);
     }

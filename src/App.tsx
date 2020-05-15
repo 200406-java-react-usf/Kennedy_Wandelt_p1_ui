@@ -18,14 +18,14 @@ function App() {
   return (
     <>
     <Router>
-      <NavbarComponent authUser={authUser}/>
+      <NavbarComponent authUser={authUser} setAuthUser={setAuthUser}/>
 
       <Switch>
         <Route path="/home" render={() => <HomeComponent authUser={authUser} /> } />
         <Route path="/login" render={() => <LoginComponent authUser={authUser} setAuthUser={setAuthUser} /> } />
         <Route path="/new-user" render={() => <NewUserComponent  authUser={authUser} newUser={undefined} /> } />
       </Switch>
-      </Router>
+    </Router>
     </>
   );
 }
