@@ -1,8 +1,18 @@
   
-import { revaboardsClient } from "./revaboards-client";
-import { User } from '../models/user';
+import { projectClient } from "./revaboards-client";
+import { NewUser } from '../models/newUser';
 
-export async function registerUser(newUser: User) {
-    let response = await revaboardsClient.post('/users', {newUser});
+async function addNewUser(newUser: NewUser) {
+    let response = await projectClient.post('/users', newUser);
     return await response.data;
+}
+
+async function getUsers(){
+    let response = await projectClient.get('/users');
+    return await response.data;
+}
+
+export {
+    addNewUser,
+    getUsers
 }

@@ -49,11 +49,16 @@ function LoginComponent(props: ILoginProps) {
     }
 
     let login = async () => {
-        if(username === '' || password === ''){
-            setErrorMessage('Both username and password mut be entered to login.')
-        }
         let authUser = await authenticate(username, password);
         props.setAuthUser(authUser);
+    }
+
+    let onKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement>): void => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          event.stopPropagation();
+          login();
+        }
     }
 
     return (
@@ -84,7 +89,7 @@ function LoginComponent(props: ILoginProps) {
                                     placeholder="Enter your password"/>
                             </FormControl>
                             <br/><br/>
-                            <a className="btn btn-primary btn-lg" style={{color: 'white'}}onClick={login} role="button">Login</a>
+                            <a className="btn btn-primary btn-lg" style={{color: 'white'}} onKeyDown={onKeyDown} onClick={login} role="button">Login</a>
                             <br/><br/>
                             {
                                 errorMessage 
