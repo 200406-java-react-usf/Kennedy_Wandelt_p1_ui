@@ -135,9 +135,9 @@ function NewUserComponent (props: IRegProps) {
                 <FormControl fullWidth>
                     <InputLabel shrink htmlFor="age-native-label-placeholder"></InputLabel>
                     <select value={role} onChange={updateRole}>
-                        <option value={'1'}>Employee</option>
-                        <option value={'2'}>Financial Manager</option>
-                        <option value={'3'}>Admin</option>
+                        <option value={3}>Employee</option>
+                        <option value={2}>Financial Manager</option>
+                        <option value={1}>Admin</option>
                     </select>
                 </FormControl>
 
