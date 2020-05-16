@@ -53,6 +53,14 @@ function LoginComponent(props: ILoginProps) {
         props.setAuthUser(authUser);
     }
 
+    let onKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement>): void => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          event.stopPropagation();
+          login();
+        }
+    }
+
     return (
         props.authUser ?
         <Redirect to="/home" /> :
@@ -81,7 +89,7 @@ function LoginComponent(props: ILoginProps) {
                                     placeholder="Enter your password"/>
                             </FormControl>
                             <br/><br/>
-                            <a className="btn btn-primary btn-lg" style={{color: 'white'}}onClick={login} role="button">Login</a>
+                            <a className="btn btn-primary btn-lg" style={{color: 'white'}} onKeyDown={onKeyDown} onClick={login} role="button">Login</a>
                             <br/><br/>
                             {
                                 errorMessage 
