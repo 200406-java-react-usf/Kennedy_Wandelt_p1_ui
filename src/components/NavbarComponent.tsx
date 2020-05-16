@@ -14,7 +14,8 @@ const NavbarComponent = (props: INavbarProps) => {
 
     let logoutUser = async () => {
         let authUser = await logout();
-        //props.setAuthUser();
+        //@ts-ignore
+        props.setAuthUser(null as User);
     }
 
     return (

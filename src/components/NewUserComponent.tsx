@@ -34,7 +34,7 @@ function NewUserComponent (props: IRegProps) {
     const [firstname, setFirstName] = useState('');
     const [lastname, setLastName] = useState('');
     const [email, setEmail] = useState('');
-    const [role, setRole] = useState('');
+    const [role, setRole] = useState('1');
     const [errorMessage, setErrorMessage] = useState('');
 
     let updateField = (e: any) => {
