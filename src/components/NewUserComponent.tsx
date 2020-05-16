@@ -54,12 +54,14 @@ function NewUserComponent (props: IRegProps) {
             case 'password':
                 setPassword(e.target.value);
                 break;
-            case 'role':
-                setRole(e.target.value);
-                break;
             default:
                 console.warn(`Improper binding detected on element with id: ${e.currentTarget.id}`); 
         }
+    }
+
+    let updateRole = (e: any) => {
+        setRole(e.currentTarget.value);
+        console.log(role)
     }
 
     let updateErrorMessage = (e: any) => {
@@ -72,6 +74,7 @@ function NewUserComponent (props: IRegProps) {
             setErrorMessage('All fields are required to create a new user')
         }
         let user = new User(id, username, password, firstname, lastname, email, role);
+
         let newUser = await addNewUser(user);
     }
 
@@ -127,14 +130,15 @@ function NewUserComponent (props: IRegProps) {
                         placeholder="Email" />
                 </FormControl>
 
-                <FormControl margin="normal" fullWidth>
-                    <InputLabel shrink htmlFor="age-native-label-placeholder">Role</InputLabel>
-
-                    <NativeSelect value={role} onClick={updateField} inputProps={{name: 'role', id: 'role-selector',}}>
+                <p></p>
+                <span>Role</span>
+                <FormControl fullWidth>
+                    <InputLabel shrink htmlFor="age-native-label-placeholder"></InputLabel>
+                    <select value={role} onChange={updateRole}>
                         <option value={'1'}>Employee</option>
                         <option value={'2'}>Financial Manager</option>
                         <option value={'3'}>Admin</option>
-                    </NativeSelect>
+                    </select>
                 </FormControl>
 
                 <br/><br/>
