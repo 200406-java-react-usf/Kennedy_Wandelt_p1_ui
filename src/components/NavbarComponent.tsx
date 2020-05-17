@@ -53,7 +53,7 @@ const NavbarComponent = (props: INavbarProps) => {
                             Financial Dashboard
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <Link className="dropdown-item" to="#">All Reimbursements</Link>
+                            <Link className="dropdown-item" to="/reimbs">All Reimbursements</Link>
                             <Link className="dropdown-item" to="#">Pending Reimbursements</Link>
                             </div>
                         </li>:

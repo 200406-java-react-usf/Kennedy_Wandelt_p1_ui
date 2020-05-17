@@ -28,7 +28,6 @@ let MyReimbsComponent = (props: IMyReimbsProps) => {
                         <td>{reimb.amount}</td>
                         <td>{reimb.submitted}</td>
                         <td>{reimb.resolved}</td>
-                        <td>{reimb.resolved}</td>
                         <td>{reimb.description}</td>
                         <td>{reimb.author_id}</td>
                         <td>{reimb.resolver_id}</td>

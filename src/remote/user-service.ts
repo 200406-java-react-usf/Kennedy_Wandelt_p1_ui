@@ -1,6 +1,8 @@
   
 import { projectClient } from "./project-client";
 import { NewUser } from '../models/newUser';
+import Axios from "axios";
+
 
 async function addNewUser(newUser: NewUser) {
     let response = await projectClient.post('/users', newUser);
@@ -8,7 +10,7 @@ async function addNewUser(newUser: NewUser) {
 }
 
 async function getUsers(){
-    let response = await projectClient.get('/users');
+    let response = await projectClient.get('/users', {withCredentials: true});
     return await response.data;
 }
 

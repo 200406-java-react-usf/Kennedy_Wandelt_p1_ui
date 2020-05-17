@@ -11,6 +11,7 @@ interface IAllReimbsProps {
 }
 
 let AllReimbsComponent = (props: IAllReimbsProps) => {
+
     //@ts-ignore
     const [reimbs, setReimbs] = useState([] as Reimbursement[]);
 
@@ -23,18 +24,17 @@ let AllReimbsComponent = (props: IAllReimbsProps) => {
             const response = await getReimbs();
             for (let reimb of response){
                 reimbRows.push(
-                    <tr key = {reimb.reimb_id}>
+                <tr key={reimb.reimb_id}>
                         <th scope="row">{reimb.reimb_id}</th>
                         <td>{reimb.amount}</td>
                         <td>{reimb.submitted}</td>
-                        <td>{reimb.resolved}</td>
                         <td>{reimb.resolved}</td>
                         <td>{reimb.description}</td>
                         <td>{reimb.author_id}</td>
                         <td>{reimb.resolver_id}</td>
                         <td>{reimb.reimb_status}</td>
                         <td>{reimb.reimb_type}</td>
-                    </tr>
+                </tr>
                 )
             }
 
