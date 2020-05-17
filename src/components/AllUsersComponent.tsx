@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './HomeComponent.css';
 import { User } from '../models/user';
 import { getUsers } from '../remote/user-service';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 
 
@@ -31,6 +31,7 @@ let AllUsersComponent = (props: IUsersProps) => {
                         <td>{user.password}</td>
                         <td>{user.email}</td>
                         <td>{user.role_name}</td>
+                        <td><Link to={'/'}>edit</Link><span> / </span><Link to={'/'}>delete</Link></td>
                     </tr>
                 )
             }
