@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { User } from '../models/user';
 import { Reimbursement } from '../models/reimbs'
 import { getReimbs } from '../remote/reimb-service';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 
 
@@ -28,10 +28,10 @@ let AllReimbsComponent = (props: IAllReimbsProps) => {
                         <th scope="row">{reimb.reimb_id}</th>
                         <td>{reimb.amount}</td>
                         <td>{reimb.submitted}</td>
-                        <td>{reimb.resolved}</td>
+                        <td>{reimb.resolved? reimb.resolved: <Link to={'/'}>resolve</Link>}</td>
                         <td>{reimb.description}</td>
                         <td>{reimb.author_id}</td>
-                        <td>{reimb.resolver_id}</td>
+                        <td>{reimb.resolver_id? reimb.resolver_id: <>N/A</>}</td>
                         <td>{reimb.reimb_status}</td>
                         <td>{reimb.reimb_type}</td>
                 </tr>
