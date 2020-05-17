@@ -11,6 +11,7 @@ import { AppBar, Toolbar, Typography, createMuiTheme, ThemeProvider } from '@mat
 import AllUsersComponent from './components/AllUsersComponent';
 import MyReimbsComponent from './components/MyReimbsComponent';
 import AllReimbsComponent from './components/AllReimbsComponent';
+import FDashComponent from './components/FinancialDashboardComponent';
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
         <Route path="/new-user" render={() => <NewUserComponent  authUser={authUser} newUser={undefined} /> } />
         <Route path="/all-users" render={() => <AllUsersComponent authUser={authUser}/> } />
         <Route path="/my-reimbs" render={() => <MyReimbsComponent authUser={authUser}/> } />
-        <Route path="/reimbs" render={() => <AllReimbsComponent authUser={authUser}/> } />
+        <Route path="/reimbs" render={() => <FDashComponent authUser={authUser}/> } />
       </Switch>
     </Router>
     </>
