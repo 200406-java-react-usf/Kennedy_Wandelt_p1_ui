@@ -66,7 +66,7 @@ let MyReimbsComponent = (props: IMyReimbsProps) => {
                 <tbody>
                     {reimbs.length === 0?
                     <h5>No reimbursements found</h5>:
-                    {reimbs}}
+                    reimbs}
                 </tbody>
             </table>
         </>
