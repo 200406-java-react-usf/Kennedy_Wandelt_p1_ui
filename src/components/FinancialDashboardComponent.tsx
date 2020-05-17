@@ -19,8 +19,8 @@ let FDashComponent = (props: IFDashProps) => {
     return (
       <>
         <Switch>
-          <Route path={`/${thisReimb.reimb_id}`} render={() => <ReimbDetailsComponent authUser={props.authUser} thisReimb={thisReimb}/> } />
-          <Route path={"/all-reimbs"} render={() => <AllReimbsComponent authUser={props.authUser}/> } />
+          <Route path={`/details-${thisReimb.reimb_id}`} render={() => <ReimbDetailsComponent authUser={props.authUser} thisReimb={thisReimb}/> } />
+          <Route path={"/all-reimbs"} render={() => <AllReimbsComponent authUser={props.authUser} thisReimb={thisReimb}/> } />
         </Switch>
       </>
     );

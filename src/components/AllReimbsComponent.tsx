@@ -1,19 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { User } from '../models/user';
 import { Reimbursement } from '../models/reimbs'
-import { getReimbs } from '../remote/reimb-service';
+import { getReimbs, getReimbDetails } from '../remote/reimb-service';
 import { Redirect, Link } from 'react-router-dom';
 
 
 
 interface IAllReimbsProps {
     authUser: User
+    setThisReimb: (reimb: Reimbursement) => void 
 }
 
 let AllReimbsComponent = (props: IAllReimbsProps) => {
 
     //@ts-ignore
     const [reimbs, setReimbs] = useState([] as Reimbursement[]);
+
+    function toDetails(reimbId: number) {
+        let getReimb = async (id: number) => {
+            const response = await getReimbDetails(id);
+
+            props.setThisReimb(response);
+        }
+
+        getReimb(reimbId);
+        <Redirect to={`/details-${reimbId}`}/>
+        return true;
+    }
 
 
     let reimbRows: any[] = [];
@@ -25,7 +38,7 @@ let AllReimbsComponent = (props: IAllReimbsProps) => {
             for (let reimb of response){
                 reimbRows.push(
                 <tr key={reimb.reimb_id}>
-                        <th scope="row">{reimb.reimb_id}</th>
+                        <th scope="row"><a onClick={toDetails(reimb.reimb_id)}>{reimb.reimb_id}</a></th>
                         <td>{reimb.amount}</td>
                         <td>{reimb.submitted}</td>
                         <td>{reimb.resolved? reimb.resolved: <Link to={'/'}>resolve</Link>}</td>
