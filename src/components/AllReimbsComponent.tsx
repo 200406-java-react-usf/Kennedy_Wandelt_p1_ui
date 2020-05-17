@@ -16,17 +16,16 @@ let AllReimbsComponent = (props: IAllReimbsProps) => {
     //@ts-ignore
     const [reimbs, setReimbs] = useState([] as Reimbursement[]);
 
-    function toDetails(reimbId: number) {
-        let getReimb = async (id: number) => {
-            const response = await getReimbDetails(id);
+    // let toDetails = (reimbId: number) => {
+    //     let getReimb = async (id: number) => {
+    //         const response = await getReimbDetails(id);
 
-            props.setThisReimb(response);
-        }
+    //         props.setThisReimb(response);
+    //     }
 
-        getReimb(reimbId);
-        <Redirect to={`/details-${reimbId}`}/>
-        return true;
-    }
+    //     getReimb(reimbId);
+    //     <Redirect to={`/details-${reimbId}`}/>
+    // }
 
 
     let reimbRows: any[] = [];
@@ -38,7 +37,15 @@ let AllReimbsComponent = (props: IAllReimbsProps) => {
             for (let reimb of response){
                 reimbRows.push(
                 <tr key={reimb.reimb_id}>
-                        <th scope="row"><a onClick={toDetails(reimb.reimb_id)}>{reimb.reimb_id}</a></th>
+                    
+                        <th scope="row"><Link to='' onClick={ async () => {
+                                const response = await getReimbDetails(reimb.reimb_id);
+                                props.setThisReimb(response);
+                                
+                                <Redirect to={`/details-${reimb.reimbId}`}/>
+
+                        }}>{reimb.reimb_id}</Link></th>
+
                         <td>{reimb.amount}</td>
                         <td>{reimb.submitted}</td>
                         <td>{reimb.resolved? reimb.resolved: <Link to={'/'}>resolve</Link>}</td>

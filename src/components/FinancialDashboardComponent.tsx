@@ -20,7 +20,7 @@ let FDashComponent = (props: IFDashProps) => {
       <>
         <Switch>
           <Route path={`/details-${thisReimb.reimb_id}`} render={() => <ReimbDetailsComponent authUser={props.authUser} thisReimb={thisReimb}/> } />
-          <Route path={"/all-reimbs"} render={() => <AllReimbsComponent authUser={props.authUser} thisReimb={thisReimb}/> } />
+          <Route path={"/all-reimbs"} render={() => <AllReimbsComponent authUser={props.authUser} setThisReimb={setThisReimb}/> } />
         </Switch>
       </>
     );
