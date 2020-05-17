@@ -1,34 +1,45 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './HomeComponent.css';
 import { User } from '../models/user';
 import { getUsers } from '../remote/user-service';
+
 
 // interface IUsersProps {
 //     authUser: User;
 // }
 
-function AllUsersComponent(props: any) {
-    let allUsers = getUsers();
-    console.log(allUsers);
-    
+let AllUsersComponent = (props: any) => {
+    //@ts-ignore
+    const [users, setUsers] = useState([] as User[]);
+
+
     let userRows: any[] = [];
 
-    // async getAllUsers
+    useEffect(() => {
+        let fetchData = async () => {
 
-    // @ts-ignore
-    // for(let user of allUsers) {
-    //    userRows.push(
-    //        <tr>
-    //            <th scope="row">{user.ers_user_id}</th>
-    //            <td>{user.first_name}</td>
-    //            <td>{user.last_name}</td>
-    //            <td>{user.username}</td>
-    //            <td>{user.password}</td>
-    //            <td>{user.email}</td>
-    //            <td>{user.role_name}</td>
-    //        </tr>
-    //    ) 
-    // }
+            const response = await getUsers();
+            for (let user of response){
+                userRows.push(
+                    <tr>
+                        <th scope="row">{user.ers_user_id}</th>
+                        <td>{user.first_name}</td>
+                        <td>{user.last_name}</td>
+                        <td>{user.username}</td>
+                        <td>{user.password}</td>
+                        <td>{user.email}</td>
+                        <td>{user.role_name}</td>
+                    </tr>
+                )
+            }
+
+            setUsers(userRows)
+        };
+
+        fetchData()
+    }, []);
+
+
 
     return (
         <>
@@ -45,7 +56,7 @@ function AllUsersComponent(props: any) {
                     </tr>
                 </thead>
                 <tbody>
-                    {userRows}
+                    {users}
                 </tbody>
             </table>
         </>

@@ -1,20 +1,37 @@
   
 import { projectClient } from "./project-client";
-import { NewUser } from '../models/newUser';
+import { NewReimbursement } from '../models/newReimb';
+import { Reimbursement } from "../models/reimbs";
 
-async function addNewUser(newUser: NewUser) {
-    let response = await projectClient.post('/users', newUser);
+
+async function addNewReimb(newReimb: NewReimbursement) {
+    let response = await projectClient.post('/reimbursements', newReimb);
     return await response.data;
 }
 
-async function getUsers(){
-    let response = await projectClient.get('/users');
+async function getReimbs(){
+    let response = await projectClient.get('/reimbursements');
     return await response.data;
 }
 
+async function updateReimb(){
+    let response = await projectClient.post('/reimbursements');
+    return await response.data;
+}
 
+async function getReimbDetails(reimbId: number) {
+    let response = await projectClient.get(`/reimbursements/${reimbId}`);
+    return await response.data;
+}
 
+async function getMyReimbs(userId: number){
+    let response = await projectClient.get(`/reimbursements/user/${userId}`);
+    return await response.data;
+}
 export {
-    addNewUser,
-    getUsers
+    addNewReimb,
+    getReimbs,
+    updateReimb,
+    getReimbDetails,
+    getMyReimbs
 }

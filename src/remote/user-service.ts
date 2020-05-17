@@ -12,7 +12,9 @@ async function getUsers(){
     return await response.data;
 }
 
-
+// async function updateUser(){
+//     let response = await projectClient.
+// }
 
 export {
     addNewUser,
