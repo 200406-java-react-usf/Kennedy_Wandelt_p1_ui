@@ -1,35 +1,77 @@
-import React from 'react';
-import './HomeComponent.css';
-import { Card, Typography, CardContent } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
+import { User } from '../models/user';
+import { Reimbursement } from '../models/reimbs'
+import { getMyReimbs } from '../remote/reimb-service';
+import { Redirect } from 'react-router-dom';
 
-interface IHomeProps {
-    un: string
-    reimbs: {id:number, amount: string, description: string}[]
+
+
+interface IMyReimbsProps {
+    authUser: User
 }
 
-const HomeComponent = (props: IHomeProps) => {
+let MyReimbsComponent = (props: IMyReimbsProps) => {
+    //@ts-ignore
+    const [reimbs, setReimbs] = useState([] as Reimbursement[]);
 
-    let myReimbs: any[] = [];
 
-    // props.reimbs.forEach(reimb => {
-    //     myReimbs.push(
-    //         <Card>
-    //             <CardContent>
-    //                 <Typography variant="h5">
-    //                     {reimb.id}
-    //                 </Typography>
-    //                 <Typography color="textsecondary"
-    //             </CardContent>
+    let reimbRows: any[] = [];
 
-    //         </Card>
-    //     )
-    // })
+    useEffect(() => {
+        let fetchData = async () => {
+
+            const response = await getMyReimbs(props.authUser.ers_user_id);
+            for (let reimb of response){
+                reimbRows.push(
+                    <tr key = {reimb.reimb_id}>
+                        <th scope="row">{reimb.reimb_id}</th>
+                        <td>{reimb.amount}</td>
+                        <td>{reimb.submitted}</td>
+                        <td>{reimb.resolved}</td>
+                        <td>{reimb.resolved}</td>
+                        <td>{reimb.description}</td>
+                        <td>{reimb.author_id}</td>
+                        <td>{reimb.resolver_id}</td>
+                        <td>{reimb.reimb_status}</td>
+                        <td>{reimb.reimb_type}</td>
+                    </tr>
+                )
+            }
+
+            setReimbs(reimbRows)
+        };
+
+        fetchData()
+    }, []);
+
     return (
+        !props.authUser?
+        <Redirect to='/login'/>:
         <>
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Time Submitted</th>
+                        <th scope="col">Time Resolved</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Author #</th>
+                        <th scope="col">Resolver #</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Type</th>
 
+                    </tr>
+                </thead>
+                <tbody>
+                    {reimbs.length === 0?
+                    <h5>No reimbursements found</h5>:
+                    {reimbs}}
+                </tbody>
+            </table>
         </>
     );
 
 }
 
-export default HomeComponent;
+export default MyReimbsComponent;

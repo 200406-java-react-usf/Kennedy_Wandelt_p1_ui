@@ -1,6 +1,6 @@
 export class User {
 
-    ers_user_id: number | null;
+    ers_user_id: number;
     username: string;
     password: string;
     first_name: string;
@@ -8,8 +8,8 @@ export class User {
     email: string;
     role_name: string;
 
-    constructor (ers_user_id: number | null, username: string, password: string, first_name: string, last_name: string, email: string, role_name: string){
-        this.ers_user_id = ers_user_id || null;
+    constructor (ers_user_id: number, username: string, password: string, first_name: string, last_name: string, email: string, role_name: string){
+        this.ers_user_id = ers_user_id;
         this.username = username;
         this.password = password;
         this.first_name = first_name;

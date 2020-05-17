@@ -2,13 +2,15 @@ import React, {useEffect, useState} from 'react';
 import './HomeComponent.css';
 import { User } from '../models/user';
 import { getUsers } from '../remote/user-service';
+import { Redirect } from 'react-router-dom';
 
 
-// interface IUsersProps {
-//     authUser: User;
-// }
 
-let AllUsersComponent = (props: any) => {
+interface IUsersProps {
+    authUser: User;
+}
+
+let AllUsersComponent = (props: IUsersProps) => {
     //@ts-ignore
     const [users, setUsers] = useState([] as User[]);
 
@@ -21,7 +23,7 @@ let AllUsersComponent = (props: any) => {
             const response = await getUsers();
             for (let user of response){
                 userRows.push(
-                    <tr>
+                    <tr key = {user.ers_user_id}>
                         <th scope="row">{user.ers_user_id}</th>
                         <td>{user.first_name}</td>
                         <td>{user.last_name}</td>
@@ -42,6 +44,8 @@ let AllUsersComponent = (props: any) => {
 
 
     return (
+        !props.authUser?
+        <Redirect to='/login'/>:
         <>
             <table className="table table-striped">
                 <thead>
