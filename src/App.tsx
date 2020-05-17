@@ -10,6 +10,7 @@ import NavbarComponent from './components/NavbarComponent';
 import { AppBar, Toolbar, Typography, createMuiTheme, ThemeProvider } from '@material-ui/core';
 import AllUsersComponent from './components/AllUsersComponent';
 import MyReimbsComponent from './components/MyReimbsComponent';
+import AllReimbsComponent from './components/AllReimbsComponent';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/new-user" render={() => <NewUserComponent  authUser={authUser} newUser={undefined} /> } />
         <Route path="/all-users" render={() => <AllUsersComponent authUser={authUser}/> } />
         <Route path="/my-reimbs" render={() => <MyReimbsComponent authUser={authUser}/> } />
+        <Route path="/reimbs" render={() => <AllReimbsComponent authUser={authUser}/> } />
       </Switch>
     </Router>
     </>
