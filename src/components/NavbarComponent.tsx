@@ -48,16 +48,11 @@ const NavbarComponent = (props: INavbarProps) => {
 
                     } 
                     {(props.authUser && props.authUser.role_name === 'fmanager')?
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Financial Dashboard
-                            </a>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <Link className="dropdown-item" to="/fmdash/reimb-all">All Reimbursements</Link>
-                            <Link className="dropdown-item" to="#">Pending Reimbursements</Link>
-                            </div>
-                        </li>:
-                        <></>
+                        <li className="nav-item">
+                        <Link className="nav-link" to="/fmdash/reimb-all">Financial Dashboard</Link>
+                    </li>:
+
+                    <></>
                     }
                     </ul>
                 </div>

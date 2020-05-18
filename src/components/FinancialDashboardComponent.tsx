@@ -11,8 +11,6 @@ interface IFDashProps {
 
 let FDashComponent = (props: IFDashProps) => {
     //@ts-ignore
-    //const [reimbs, setReimbs] = useState([] as Reimbursement[]);
-    //@ts-ignore
     const [thisReimb, setThisReimb] = useState(null as Reimbursement);
   
 
