@@ -20,17 +20,21 @@ function App() {
   const [authUser, setAuthUser] = useState(null as User);
 
   return (
+    
     <>
     <Router>
       <NavbarComponent authUser={authUser} setAuthUser={setAuthUser}/>
-
+      {!authUser ?
+      <Redirect to="/login" /> :
+      <Redirect to="/home" />
+      }
       <Switch>
         <Route path="/home" render={() => <HomeComponent authUser={authUser} /> } />
         <Route path="/login" render={() => <LoginComponent authUser={authUser} setAuthUser={setAuthUser} /> } />
         <Route path="/new-user" render={() => <NewUserComponent  authUser={authUser} newUser={undefined} /> } />
         <Route path="/all-users" render={() => <AllUsersComponent authUser={authUser}/> } />
         <Route path="/my-reimbs" render={() => <MyReimbsComponent authUser={authUser}/> } />
-        <Route path="/reimbs" render={() => <FDashComponent authUser={authUser}/> } />
+        <Route path="/fmdash" render={() => <FDashComponent authUser={authUser}/> } />
       </Switch>
     </Router>
     </>

@@ -38,10 +38,10 @@ let AllReimbsComponent = (props: IAllReimbsProps) => {
                 reimbRows.push(
                 <tr key={reimb.reimb_id}>
                     
-                        <th scope="row"><Link to={`/details-${reimb.reimb_id}`}><Link to='' onClick={ async () => {
+                        <th scope="row"><Link to={`/fmdash/reimb-details-${reimb.reimb_id}`} onClick={ async () => {
                                 const response = await getReimbDetails(reimb.reimb_id);
                                 props.setThisReimb(response);
-                        }}>{reimb.reimb_id}</Link></Link></th>
+                        }}>{reimb.reimb_id}</Link></th>
 
                         <td>{reimb.amount}</td>
                         <td>{reimb.submitted}</td>

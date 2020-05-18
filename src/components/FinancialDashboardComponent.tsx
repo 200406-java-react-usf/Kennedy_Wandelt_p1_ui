@@ -1,7 +1,7 @@
 import React, {useState } from 'react';
 import { User } from '../models/user';
 import { Reimbursement } from '../models/reimbs'
-import {Switch, Route } from 'react-router-dom';
+import {Switch, Route, Link } from 'react-router-dom';
 import AllReimbsComponent from './AllReimbsComponent';
 import ReimbDetailsComponent from './ReimbDetailsComponent';
 
@@ -18,12 +18,14 @@ let FDashComponent = (props: IFDashProps) => {
 
     return (
       <>
+      <h1>Financial Manager Dashboard</h1>
+      <Link to='/fmdash/reimb-all'>All Reimbs</Link>
         <Switch>
-            {thisReimb?
-                <Route path={`/details-${thisReimb.reimb_id}`} render={() => <ReimbDetailsComponent authUser={props.authUser} thisReimb={thisReimb}/> } />
+          <Route path={"/fmdash/reimb-all"} render={() => <AllReimbsComponent authUser={props.authUser} setThisReimb={setThisReimb}/> } />
+          {thisReimb?
+                <Route path={`/fmdash/reimb-details-${thisReimb.reimb_id}`} render={() => <ReimbDetailsComponent authUser={props.authUser} thisReimb={thisReimb}/> } />
                 :<></>
-            }
-          <Route path={"/all-reimbs"} render={() => <AllReimbsComponent authUser={props.authUser} setThisReimb={setThisReimb}/> } />
+          }
         </Switch>
       </>
     );
