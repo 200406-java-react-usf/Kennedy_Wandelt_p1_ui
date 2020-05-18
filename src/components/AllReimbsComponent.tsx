@@ -3,6 +3,7 @@ import { User } from '../models/user';
 import { Reimbursement } from '../models/reimbs'
 import { getReimbs, getReimbDetails } from '../remote/reimb-service';
 import { Redirect, Link } from 'react-router-dom';
+import { InputLabel } from '@material-ui/core';
 
 
 
@@ -15,17 +16,16 @@ let AllReimbsComponent = (props: IAllReimbsProps) => {
 
     //@ts-ignore
     const [reimbs, setReimbs] = useState([] as Reimbursement[]);
+    const [status, setStatus] = useState('all');
+    const [type, setType] = useState('all');
 
-    // let toDetails = (reimbId: number) => {
-    //     let getReimb = async (id: number) => {
-    //         const response = await getReimbDetails(id);
+    let updateStatus = (e: any) => {
+        setStatus(e.currentTarget.value);
+    }
 
-    //         props.setThisReimb(response);
-    //     }
-
-    //     getReimb(reimbId);
-    //     <Redirect to={`/details-${reimbId}`}/>
-    // }
+    let updateType = (e: any) => {
+        setType(e.currentTarget.value);
+    }
 
 
     let reimbRows: any[] = [];
@@ -35,31 +35,33 @@ let AllReimbsComponent = (props: IAllReimbsProps) => {
 
             const response = await getReimbs();
             for (let reimb of response){
-                reimbRows.push(
-                <tr key={reimb.reimb_id}>
-                    
-                        <th scope="row"><Link to={`/fmdash/reimb-details-${reimb.reimb_id}`} onClick={ async () => {
-                                const response = await getReimbDetails(reimb.reimb_id);
-                                props.setThisReimb(response);
-                        }}>{reimb.reimb_id}</Link></th>
+                if((reimb.reimb_type === type || type === 'all') && (reimb.reimb_status === status || status === 'all')){
+                    reimbRows.push(
+                    <tr key={reimb.reimb_id}>
+                        
+                            <th scope="row"><Link to={`/fmdash/reimb-details-${reimb.reimb_id}`} onClick={ async () => {
+                                    const response = await getReimbDetails(reimb.reimb_id);
+                                    props.setThisReimb(response);
+                            }}>{reimb.reimb_id}</Link></th>
 
-                        <td>{reimb.amount}</td>
-                        <td>{reimb.submitted}</td>
-                        <td>{reimb.resolved? reimb.resolved: <Link to={'/'}>resolve</Link>}</td>
-                        <td>{reimb.description}</td>
-                        <td>{reimb.author_id}</td>
-                        <td>{reimb.resolver_id? reimb.resolver_id: <>N/A</>}</td>
-                        <td>{reimb.reimb_status}</td>
-                        <td>{reimb.reimb_type}</td>
-                </tr>
-                )
+                            <td>{reimb.amount}</td>
+                            <td>{reimb.submitted}</td>
+                            <td>{reimb.resolved? reimb.resolved: <Link to={`/fmdash/reimb-details-${reimb.reimb_id}`}>resolve</Link>}</td>
+                            <td>{reimb.description}</td>
+                            <td>{reimb.author_id}</td>
+                            <td>{reimb.resolver_id? reimb.resolver_id: <>N/A</>}</td>
+                            <td>{reimb.reimb_status}</td>
+                            <td>{reimb.reimb_type}</td>
+                    </tr>
+                    )
+                }
             }
 
             setReimbs(reimbRows)
         };
 
         fetchData()
-    }, []);
+    });
 
     return (
         !props.authUser?
@@ -75,8 +77,21 @@ let AllReimbsComponent = (props: IAllReimbsProps) => {
                         <th scope="col">Description</th>
                         <th scope="col">Author #</th>
                         <th scope="col">Resolver #</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Type</th>
+                        <th scope="col"><InputLabel shrink htmlFor="age-native-label-placeholder"></InputLabel>
+                        <select value={status} onChange={updateStatus}>
+                            <option value={'all'}>All</option>
+                            <option value={'pending'}>Pending</option>
+                            <option value={'approved'}>Approved</option>
+                            <option value={'denied'}>Denied</option>
+                        </select></th>
+                        <th scope="col"><InputLabel shrink htmlFor="age-native-label-placeholder"></InputLabel>
+                        <select value={type} onChange={updateType}>
+                            <option value={'all'}>All</option>
+                            <option value={'lodging'}>Lodging</option>
+                            <option value={'travel'}>Travel</option>
+                            <option value={'food'}>Food</option>
+                            <option value={'other'}>Other</option>
+                        </select></th>
 
                     </tr>
                 </thead>
