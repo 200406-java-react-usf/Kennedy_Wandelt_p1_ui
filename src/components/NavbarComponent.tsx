@@ -29,7 +29,7 @@ const NavbarComponent = (props: INavbarProps) => {
                     <ul className="navbar-nav">                  
                     {props.authUser ?  
                         <li className="nav-item">
-                            <Link className="nav-link" to="/my-reimbs">My Reimbursements</Link>
+                            <Link className="nav-link" to="/edash/my-reimbs">My Reimbursements</Link>
                         </li>:
 
                         <></>

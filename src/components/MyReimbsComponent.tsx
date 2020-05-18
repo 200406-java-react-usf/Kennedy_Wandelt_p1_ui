@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { User } from '../models/user';
 import { Reimbursement } from '../models/reimbs'
-import { getMyReimbs } from '../remote/reimb-service';
-import { Redirect } from 'react-router-dom';
+import { getMyReimbs, getReimbDetails } from '../remote/reimb-service';
+import { Redirect, Link } from 'react-router-dom';
+
 
 
 
 interface IMyReimbsProps {
     authUser: User
+    setThisReimb: (reimb: Reimbursement) => void 
 }
 
 let MyReimbsComponent = (props: IMyReimbsProps) => {
@@ -24,7 +26,14 @@ let MyReimbsComponent = (props: IMyReimbsProps) => {
             for (let reimb of response){
                 reimbRows.push(
                     <tr key = {reimb.reimb_id}>
-                        <th scope="row">{reimb.reimb_id}</th>
+
+                        <th scope="row">
+                            <Link to={`/edash/reimb-details-${reimb.reimb_id}`} onClick={ async () => {
+                            const response = await getReimbDetails(reimb.reimb_id);
+                            props.setThisReimb(response);
+                            }}>{reimb.reimb_id}</Link>
+                        </th>
+
                         <td>{reimb.amount}</td>
                         <td>{reimb.submitted}</td>
                         <td>{reimb.resolved}</td>
