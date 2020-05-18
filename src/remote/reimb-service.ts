@@ -16,8 +16,8 @@ async function getReimbs(){
 }
 
 async function updateReimb(newReimb: Reimbursement){
-    let reimbString = JSON.stringify(newReimb)
-    let reimbJson = JSON.parse(reimbString).stringify(newReimb)
+    let reimbString = JSON.stringify(newReimb);
+    let reimbJson = JSON.parse(reimbString);
     let response = await projectClient.post('/reimbursements', reimbJson);
     return await response.data;
 }

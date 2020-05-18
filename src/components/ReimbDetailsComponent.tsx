@@ -16,11 +16,44 @@ let ReimbDetailsComponent = (props: IReimbDetailsProps) => {
         newReimb.resolver_id = props.authUser.ers_user_id;
         //@ts-ignore
         newReimb.resolved = Date.now();
-        newReimb.reimb_status = 
+        newReimb.reimb_status = '2';
+        switch (newReimb.reimb_type){
+            case 'lodging':
+                newReimb.reimb_type = '1';
+                break;
+            case 'travel':
+                newReimb.reimb_type = '2';
+                break;
+            case 'food':
+                newReimb.reimb_type = '3';
+                break;
+            case 'other':
+                newReimb.reimb_type = '4';
+                break;
+        }
         let updatedReimb = await updateReimb(newReimb);
     }
     let denyReimb = async () => {
-        let newReimb = await updateReimb()
+        let newReimb = {...props.thisReimb}
+        newReimb.resolver_id = props.authUser.ers_user_id;
+        //@ts-ignore
+        newReimb.resolved = Date.now();
+        newReimb.reimb_status = '3';
+        switch (newReimb.reimb_type){
+            case 'lodging':
+                newReimb.reimb_type = '1';
+                break;
+            case 'travel':
+                newReimb.reimb_type = '2';
+                break;
+            case 'food':
+                newReimb.reimb_type = '3';
+                break;
+            case 'other':
+                newReimb.reimb_type = '4';
+                break;
+        }
+        let updatedReimb = await updateReimb(newReimb);
     }
 
     let header = `Reimbursement #${props.thisReimb.reimb_id}`;
