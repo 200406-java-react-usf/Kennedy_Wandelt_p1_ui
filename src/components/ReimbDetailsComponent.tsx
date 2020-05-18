@@ -22,7 +22,7 @@ let ReimbDetailsComponent = (props: IReimbDetailsProps) => {
             <span>Time submitted: </span><span>{props.thisReimb.submitted}</span>
         </p>
         <p>
-            <span>Time resolved: </span><span>{props.thisReimb.resolved}</span>
+            <span>Time resolved: </span><span>{props.thisReimb.resolved? props.thisReimb.resolved: 'N/A'}</span>
         </p>
         <p>
            <span>Description: </span><span>{props.thisReimb.description}</span>
@@ -31,7 +31,7 @@ let ReimbDetailsComponent = (props: IReimbDetailsProps) => {
             <span>Author Id#</span><span>{props.thisReimb.author_id}</span>
         </p>
         <p>
-            <span>Resolver Id#: </span><span>{props.thisReimb.resolver_id}</span>
+            <span>Resolver Id#: </span><span>{props.thisReimb.resolver_id? props.thisReimb.resolver_id: 'N/A'}</span>
         </p>
         <p>
             <span>Status: </span><span>{props.thisReimb.reimb_status}</span>
@@ -40,6 +40,14 @@ let ReimbDetailsComponent = (props: IReimbDetailsProps) => {
             <span>Type: </span><span>{props.thisReimb.reimb_type}</span>
         </p>
         </div>
+
+        {!props.thisReimb.resolved?
+            <>
+            <button>Approve</button>
+            <button>Deny</button>
+            </>:
+            <></>
+        }
 
         </>
     )
