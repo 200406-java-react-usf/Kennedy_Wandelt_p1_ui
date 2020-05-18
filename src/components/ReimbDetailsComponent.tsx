@@ -1,6 +1,8 @@
 import React from 'react';
 import { User } from '../models/user';
 import { Reimbursement } from '../models/reimbs';
+import { resolve } from 'dns';
+import { updateReimb } from '../remote/reimb-service';
 
 interface IReimbDetailsProps {
     authUser: User
@@ -8,6 +10,18 @@ interface IReimbDetailsProps {
 }
 
 let ReimbDetailsComponent = (props: IReimbDetailsProps) => {
+
+    let approveReimb = async () => {
+        let newReimb = {...props.thisReimb}
+        newReimb.resolver_id = props.authUser.ers_user_id;
+        //@ts-ignore
+        newReimb.resolved = Date.now();
+        newReimb.reimb_status = 
+        let updatedReimb = await updateReimb(newReimb);
+    }
+    let denyReimb = async () => {
+        let newReimb = await updateReimb()
+    }
 
     let header = `Reimbursement #${props.thisReimb.reimb_id}`;
 
@@ -43,8 +57,8 @@ let ReimbDetailsComponent = (props: IReimbDetailsProps) => {
 
         {!props.thisReimb.resolved?
             <>
-            <button>Approve</button>
-            <button>Deny</button>
+            <button onClick={approveReimb}>Approve</button>
+            <button onClick={denyReimb}>Deny</button>
             </>:
             <></>
         }
