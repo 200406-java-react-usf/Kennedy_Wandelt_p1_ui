@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './HomeComponent.css';
 import { User } from '../models/user';
-import { getUsers } from '../remote/user-service';
+import { getUsers, deleteUser } from '../remote/user-service';
 import { Redirect, Link } from 'react-router-dom';
 
 
@@ -35,7 +35,9 @@ let AllUsersComponent = (props: IUsersProps) => {
                         <td><Link to={'/adash/edit-user'} onClick={ () => {
                             props.setEditUser({...user})}}>edit</Link>
                             <span> / </span>
-                            <Link to={'/'}>delete</Link>
+                            <a onClick={ async () => {
+                            await deleteUser(user.ers_user_id);    
+                            }} >delete</a>
                         </td>
                     </tr>
                 )

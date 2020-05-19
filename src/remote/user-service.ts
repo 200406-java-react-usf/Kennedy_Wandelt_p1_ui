@@ -24,10 +24,10 @@ async function updateUser(newUser: User){
 }
 
 async function deleteUser(userId: number){
-    let userString = JSON.stringify(userId);
-    let userJSON = JSON.parse(userString);
+
+    console.log(userId)
     
-    let response = await projectClient.delete('/users', userJSON);
+    let response = await projectClient.delete('/users', {data: {"id": userId}});
     return await response.data;
 }
 
