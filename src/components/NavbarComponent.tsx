@@ -29,7 +29,7 @@ const NavbarComponent = (props: INavbarProps) => {
                     <ul className="navbar-nav">                  
                     {props.authUser ?  
                         <li className="nav-item">
-                            <Link className="nav-link" to="/my-reimbs">My Reimbursements</Link>
+                            <Link className="nav-link" to="/edash/my-reimbs">My Reimbursements</Link>
                         </li>:
 
                         <></>
@@ -40,24 +40,19 @@ const NavbarComponent = (props: INavbarProps) => {
                             Admin Dashboard
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <Link className="dropdown-item" to="/all-users">All Users</Link>
-                            <Link className="dropdown-item" to="/new-user">Add New User</Link>
+                            <Link className="dropdown-item" to="/adash/all-users">All Users</Link>
+                            <Link className="dropdown-item" to="/adash/new-user">Add New User</Link>
                             </div>
                         </li>:
                         <></>
 
                     } 
                     {(props.authUser && props.authUser.role_name === 'fmanager')?
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Financial Dashboard
-                            </a>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <Link className="dropdown-item" to="#">All Reimbursements</Link>
-                            <Link className="dropdown-item" to="#">Pending Reimbursements</Link>
-                            </div>
-                        </li>:
-                        <></>
+                        <li className="nav-item">
+                        <Link className="nav-link" to="/fmdash/reimb-all">Financial Dashboard</Link>
+                    </li>:
+
+                    <></>
                     }
                     </ul>
                 </div>

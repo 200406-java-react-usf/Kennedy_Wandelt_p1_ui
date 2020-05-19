@@ -1,36 +1,59 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './HomeComponent.css';
 import { User } from '../models/user';
-import { getUsers } from '../remote/user-service';
+import { getUsers, deleteUser } from '../remote/user-service';
+import { Redirect, Link } from 'react-router-dom';
 
-// interface IUsersProps {
-//     authUser: User;
-// }
 
-function AllUsersComponent(props: any) {
-    let allUsers = getUsers();
-    console.log(allUsers);
-    
+
+interface IUsersProps {
+    authUser: User;
+    setEditUser: (user: User) => void;
+}
+
+let AllUsersComponent = (props: IUsersProps) => {
+    //@ts-ignore
+    const [users, setUsers] = useState([] as User[]);
+
+
     let userRows: any[] = [];
 
-    // async getAllUsers
+    useEffect(() => {
+        let fetchData = async () => {
 
-    // @ts-ignore
-    // for(let user of allUsers) {
-    //    userRows.push(
-    //        <tr>
-    //            <th scope="row">{user.ers_user_id}</th>
-    //            <td>{user.first_name}</td>
-    //            <td>{user.last_name}</td>
-    //            <td>{user.username}</td>
-    //            <td>{user.password}</td>
-    //            <td>{user.email}</td>
-    //            <td>{user.role_name}</td>
-    //        </tr>
-    //    ) 
-    // }
+            const response = await getUsers();
+            for (let user of response){
+                userRows.push(
+                    <tr key = {user.ers_user_id}>
+                        <th scope="row">{user.ers_user_id}</th>
+                        <td>{user.first_name}</td>
+                        <td>{user.last_name}</td>
+                        <td>{user.username}</td>
+                        <td>{user.password}</td>
+                        <td>{user.email}</td>
+                        <td>{user.role_name}</td>
+                        <td><Link to={'/adash/edit-user'} onClick={ () => {
+                            props.setEditUser({...user})}}>edit</Link>
+                            <span> / </span>
+                            <a onClick={ async () => {
+                            await deleteUser(user.ers_user_id);    
+                            }} >delete</a>
+                        </td>
+                    </tr>
+                )
+            }
+
+            setUsers(userRows)
+        };
+
+        fetchData()
+    }, []);
+
+
 
     return (
+        !props.authUser?
+        <Redirect to='/login'/>:
         <>
             <table className="table table-striped">
                 <thead>
@@ -45,7 +68,7 @@ function AllUsersComponent(props: any) {
                     </tr>
                 </thead>
                 <tbody>
-                    {userRows}
+                    {users}
                 </tbody>
             </table>
         </>
