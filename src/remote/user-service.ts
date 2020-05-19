@@ -18,13 +18,22 @@ async function getUsers(){
 async function updateUser(newUser: User){
     let userString = JSON.stringify(newUser);
     let userJson = JSON.parse(userString);
-    console.log(userJson)
+
     let response = await projectClient.put('/users', userJson);
+    return await response.data;
+}
+
+async function deleteUser(userId: number){
+    let userString = JSON.stringify(userId);
+    let userJSON = JSON.parse(userString);
+    
+    let response = await projectClient.delete('/users', userJSON);
     return await response.data;
 }
 
 export {
     addNewUser,
     getUsers,
-    updateUser
+    updateUser, 
+    deleteUser
 }
