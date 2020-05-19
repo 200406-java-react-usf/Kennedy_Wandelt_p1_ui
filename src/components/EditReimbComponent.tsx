@@ -51,7 +51,22 @@ let EditReimbComponent = (props: IEditReimbProps) => {
     }
 
     let change = async () => {
-        let reimb = new Reimbursement(props.editReimb.reimb_id, +amount, Date.now(), null, description, props.editReimb.author_id, null, props.editReimb.reimb_status, reimb_type_id);
+        let type = reimb_type_id;
+        switch (reimb_type_id){
+            case 'lodging':
+                type = '1';
+                break;
+            case 'travel':
+                type = '2';
+                break;
+            case 'food':
+                type = '3';
+                break;
+            case 'other':
+                type = '4';
+                break;
+        }
+        let reimb = new Reimbursement(props.editReimb.reimb_id, +amount, Date.now(), null, description, props.editReimb.author_id, null, '1', type);
         let newReimb = await updateReimb(reimb);
     }
 

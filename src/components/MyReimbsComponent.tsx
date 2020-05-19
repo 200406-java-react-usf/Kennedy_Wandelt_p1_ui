@@ -38,7 +38,6 @@ let MyReimbsComponent = (props: IMyReimbsProps) => {
                         <td>${reimb.amount}</td>
                         <td>{reimb.submitted}</td>
                         <td>{reimb.description}</td>
-                        <td>{reimb.author_id}</td>
                         <td>{reimb.reimb_status}</td>
                         <td>{reimb.reimb_type}</td>
                         {reimb.reimb_status === 'pending'?
@@ -67,7 +66,6 @@ let MyReimbsComponent = (props: IMyReimbsProps) => {
                         <th scope="col">Amount</th>
                         <th scope="col">Time Submitted</th>
                         <th scope="col">Description</th>
-                        <th scope="col">Author #</th>
                         <th scope="col">Status</th>
                         <th scope="col">Type</th>
 
