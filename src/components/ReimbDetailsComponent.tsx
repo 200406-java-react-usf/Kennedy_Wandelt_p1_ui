@@ -3,6 +3,7 @@ import { User } from '../models/user';
 import { Reimbursement } from '../models/reimbs';
 import { resolve } from 'dns';
 import { updateReimb } from '../remote/reimb-service';
+import { Link } from 'react-router-dom';
 
 interface IReimbDetailsProps {
     authUser: User
@@ -63,7 +64,7 @@ let ReimbDetailsComponent = (props: IReimbDetailsProps) => {
         <h1>{header}</h1>
         <div>
         <p>
-            <span>Amount: </span><span>{props.thisReimb.amount}</span>
+            <span>Amount: $</span><span>{props.thisReimb.amount}</span>
         </p>
         <p>
             <span>Time submitted: </span><span>{props.thisReimb.submitted}</span>
@@ -93,6 +94,10 @@ let ReimbDetailsComponent = (props: IReimbDetailsProps) => {
             <button onClick={approveReimb}>Approve</button>
             <button onClick={denyReimb}>Deny</button>
             </>:
+            <></>
+        }
+        {props.thisReimb.reimb_status === 'pending'?
+            <td><Link to={'/'}>edit</Link></td>:
             <></>
         }
 

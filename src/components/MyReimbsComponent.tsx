@@ -9,7 +9,8 @@ import { Redirect, Link } from 'react-router-dom';
 
 interface IMyReimbsProps {
     authUser: User
-    setThisReimb: (reimb: Reimbursement) => void 
+    setThisReimb: (reimb: Reimbursement) => void; 
+    setEditReimb: (reimb: Reimbursement) => void;
 }
 
 let MyReimbsComponent = (props: IMyReimbsProps) => {
@@ -34,14 +35,19 @@ let MyReimbsComponent = (props: IMyReimbsProps) => {
                             }}>{reimb.reimb_id}</Link>
                         </th>
 
-                        <td>{reimb.amount}</td>
+                        <td>${reimb.amount}</td>
                         <td>{reimb.submitted}</td>
-                        <td>{reimb.resolved}</td>
                         <td>{reimb.description}</td>
                         <td>{reimb.author_id}</td>
-                        <td>{reimb.resolver_id}</td>
                         <td>{reimb.reimb_status}</td>
                         <td>{reimb.reimb_type}</td>
+                        {reimb.reimb_status === 'pending'?
+                            <td><Link to={`/edash/edit-reimb-${reimb.reimb_id}`} onClick={ async () => {
+                                const response = await getReimbDetails(reimb.reimb_id);
+                                props.setEditReimb(response);
+                                }}>edit</Link></td>:
+                            <></>
+                        }
                     </tr>
                 )
             }
@@ -62,10 +68,8 @@ let MyReimbsComponent = (props: IMyReimbsProps) => {
                         <th scope="col">#</th>
                         <th scope="col">Amount</th>
                         <th scope="col">Time Submitted</th>
-                        <th scope="col">Time Resolved</th>
                         <th scope="col">Description</th>
                         <th scope="col">Author #</th>
-                        <th scope="col">Resolver #</th>
                         <th scope="col">Status</th>
                         <th scope="col">Type</th>
 

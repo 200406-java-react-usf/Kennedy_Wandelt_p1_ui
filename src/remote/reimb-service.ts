@@ -6,7 +6,10 @@ import Axios from "axios";
 
 
 async function addNewReimb(newReimb: NewReimbursement) {
-    let response = await projectClient.post('/reimbursements', newReimb);
+    let reimbString = JSON.stringify(newReimb);
+    let reimbJson = JSON.parse(reimbString);
+    console.log(reimbJson);
+    let response = await projectClient.post('/reimbursements', reimbJson);
     return await response.data;
 }
 

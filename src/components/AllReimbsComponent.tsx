@@ -44,7 +44,7 @@ let AllReimbsComponent = (props: IAllReimbsProps) => {
                                     props.setThisReimb(response);
                             }}>{reimb.reimb_id}</Link></th>
 
-                            <td>{reimb.amount}</td>
+                            <td>${reimb.amount}</td>
                             <td>{reimb.submitted}</td>
                             <td>{reimb.resolved? reimb.resolved: <Link to={`/fmdash/reimb-details-${reimb.reimb_id}`}>resolve</Link>}</td>
                             <td>{reimb.description}</td>
