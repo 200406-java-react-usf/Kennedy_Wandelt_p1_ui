@@ -40,8 +40,8 @@ const NavbarComponent = (props: INavbarProps) => {
                             Admin Dashboard
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <Link className="dropdown-item" to="/all-users">All Users</Link>
-                            <Link className="dropdown-item" to="/new-user">Add New User</Link>
+                            <Link className="dropdown-item" to="/adash/all-users">All Users</Link>
+                            <Link className="dropdown-item" to="/adash/new-user">Add New User</Link>
                             </div>
                         </li>:
                         <></>

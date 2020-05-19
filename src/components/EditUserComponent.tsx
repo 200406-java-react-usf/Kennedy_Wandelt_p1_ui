@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
-import {Typography, FormControl, InputLabel, Input, Button, NativeSelect, makeStyles} from '@material-ui/core';
-import { addNewUser } from '../remote/user-service';
+import {Typography, FormControl, InputLabel, Input, Button, makeStyles} from '@material-ui/core';
+import { updateUser } from '../remote/user-service';
 import { User } from '../models/user';
-import { NewUser } from '../models/newUser'
 
 
-export interface IRegProps {
+export interface IEditUserProps {
     authUser: User,
-    newUser: NewUser | undefined,
+    editUser: User
 }
 
 const useStyles = makeStyles({
@@ -24,16 +23,33 @@ const useStyles = makeStyles({
 });
 
 
-function NewUserComponent (props: IRegProps) {
+let EditUserComponent = (props: IEditUserProps) => {
 
     const classes = useStyles();
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [firstname, setFirstName] = useState('');
-    const [lastname, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [role, setRole] = useState('1');
+    let editUserRole = props.editUser.role_name
+
+    switch (editUserRole) {
+        case 'employee':
+            editUserRole = '3';
+            break;
+        case 'fmanager':
+            editUserRole = '2';
+            break;
+        case 'admin':
+            editUserRole = '1';
+            break;
+        default:
+            console.warn('Dont do it');
+    }
+
+
+    const [username, setUsername] = useState(props.editUser.username);
+    const [password, setPassword] = useState(props.editUser.password);
+    const [firstname, setFirstName] = useState(props.editUser.first_name);
+    const [lastname, setLastName] = useState(props.editUser.last_name);
+    const [email, setEmail] = useState(props.editUser.email);
+    const [role, setRole] = useState(editUserRole);
     const [errorMessage, setErrorMessage] = useState('');
 
     let updateField = (e: any) => {
@@ -68,13 +84,10 @@ function NewUserComponent (props: IRegProps) {
     }
     
 
-    let register = async () => {
-        if(username === '' || password === '' || firstname === '' || lastname === '' || email === ''){
-            setErrorMessage('All fields are required to create a new user')
-        }
-        let user = new NewUser(username, password, firstname, lastname, email, +role);
-
-        let newUser = await addNewUser(user);
+    let change = async () => {
+        let user = new User(props.editUser.ers_user_id, username, password, firstname, lastname, email, role);
+        console.log(user);
+        let newUser = await updateUser(user);
     }
 
     return (
@@ -134,14 +147,14 @@ function NewUserComponent (props: IRegProps) {
                 <FormControl fullWidth>
                     <InputLabel shrink htmlFor="age-native-label-placeholder"></InputLabel>
                     <select value={role} onChange={updateRole}>
-                        <option value={3}>Employee</option>
-                        <option value={2}>Financial Manager</option>
-                        <option value={1}>Admin</option>
+                        <option value={'3'}>Employee</option>
+                        <option value={'2'}>Financial Manager</option>
+                        <option value={'1'}>Admin</option>
                     </select>
                 </FormControl>
 
                 <br/><br/>
-                <Button onClick={register} variant="contained" color="primary" size="medium">Create User</Button>
+                <Button onClick={change} variant="contained" color="primary" size="medium">Save changes</Button>
                 <br/><br/>
                 {
                     errorMessage 
@@ -157,4 +170,4 @@ function NewUserComponent (props: IRegProps) {
 
 }
 
-export default NewUserComponent
+export default EditUserComponent

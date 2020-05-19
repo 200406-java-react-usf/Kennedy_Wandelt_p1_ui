@@ -8,6 +8,7 @@ import { Redirect, Link } from 'react-router-dom';
 
 interface IUsersProps {
     authUser: User;
+    setEditUser: (user: User) => void;
 }
 
 let AllUsersComponent = (props: IUsersProps) => {
@@ -31,7 +32,11 @@ let AllUsersComponent = (props: IUsersProps) => {
                         <td>{user.password}</td>
                         <td>{user.email}</td>
                         <td>{user.role_name}</td>
-                        <td><Link to={'/'}>edit</Link><span> / </span><Link to={'/'}>delete</Link></td>
+                        <td><Link to={'/adash/edit-user'} onClick={ () => {
+                            props.setEditUser({...user})}}>edit</Link>
+                            <span> / </span>
+                            <Link to={'/'}>delete</Link>
+                        </td>
                     </tr>
                 )
             }
