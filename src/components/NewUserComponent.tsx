@@ -25,7 +25,6 @@ const useStyles = makeStyles({
 
 
 function NewUserComponent (props: IRegProps) {
-    console.log(props.authUser)
 
     const classes = useStyles();
 

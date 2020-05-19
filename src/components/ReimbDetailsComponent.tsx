@@ -88,7 +88,7 @@ let ReimbDetailsComponent = (props: IReimbDetailsProps) => {
         </p>
         </div>
 
-        {!props.thisReimb.resolved?
+        {!props.thisReimb.resolved && props.authUser.role_name === "fmanager"?
             <>
             <button onClick={approveReimb}>Approve</button>
             <button onClick={denyReimb}>Deny</button>

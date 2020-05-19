@@ -1,10 +1,11 @@
 import React, {useState } from 'react';
 import { User } from '../models/user';
 import { Reimbursement } from '../models/reimbs'
-import {Switch, Route, Link } from 'react-router-dom';
+import {Switch, Route, Link, Redirect } from 'react-router-dom';
 import AllReimbsComponent from './AllReimbsComponent';
 import ReimbDetailsComponent from './ReimbDetailsComponent';
 import MyReimbsComponent from './MyReimbsComponent';
+import NewReimbComponent from './NewReimbursementComponent';
 
 interface IEDashProps {
     authUser: User
@@ -16,17 +17,22 @@ let EDashComponent = (props: IEDashProps) => {
   
 
     return (
-      <>
-      <h1>My Reimbursements</h1>
-      <Link to='/edash/my-reimbs'>all reimbursements</Link>
-        <Switch>
-        <Route path="/edash/my-reimbs" render={() => <MyReimbsComponent authUser={props.authUser} setThisReimb={setThisReimb}/> } />
-          {thisReimb?
-                <Route path={`/edash/reimb-details-${thisReimb.reimb_id}`} render={() => <ReimbDetailsComponent authUser={props.authUser} thisReimb={thisReimb}/> } />
-                :<></>
-          }
-        </Switch>
-      </>
+        !props.authUser?
+        <Redirect to="/home"/>:
+        
+        <>
+            <h1>My Reimbursements</h1>
+            <button><Link to={'/edash/new-reimb'}>New Reimbursement</Link></button>
+            <button><Link to='/edash/my-reimbs'>All reimbursements</Link></button>
+            <Switch>
+                <Route path="/edash/new-reimb" render={() => <NewReimbComponent authUser={props.authUser} />} />
+                <Route path="/edash/my-reimbs" render={() => <MyReimbsComponent authUser={props.authUser} setThisReimb={setThisReimb}/> } />
+                {thisReimb?
+                        <Route path={`/edash/reimb-details-${thisReimb.reimb_id}`} render={() => <ReimbDetailsComponent authUser={props.authUser} thisReimb={thisReimb}/> } />
+                        :<></>
+                }
+            </Switch>
+        </>
     );
   }
   
