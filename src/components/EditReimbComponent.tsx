@@ -50,7 +50,7 @@ let EditReimbComponent = (props: IEditReimbProps) => {
         setType(e.currentTarget.value);
     }
 
-    let submit = async () => {
+    let change = async () => {
         let reimb = new Reimbursement(props.editReimb.reimb_id, +amount, Date.now(), null, description, props.editReimb.author_id, null, props.editReimb.reimb_status, reimb_type_id);
         let newReimb = await updateReimb(reimb);
     }
@@ -88,7 +88,7 @@ let EditReimbComponent = (props: IEditReimbProps) => {
                 </FormControl>
 
                 <br/><br/>
-                <Button onClick={submit} variant="contained" color="primary" size="medium">Submit Reimbursement Request</Button>
+                <Button onClick={change} variant="contained" color="primary" size="medium">Save changes</Button>
                 <br/><br/>
                 {
                     errorMessage 

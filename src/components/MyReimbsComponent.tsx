@@ -42,10 +42,8 @@ let MyReimbsComponent = (props: IMyReimbsProps) => {
                         <td>{reimb.reimb_status}</td>
                         <td>{reimb.reimb_type}</td>
                         {reimb.reimb_status === 'pending'?
-                            <td><Link to={`/edash/edit-reimb-${reimb.reimb_id}`} onClick={ async () => {
-                                const response = await getReimbDetails(reimb.reimb_id);
-                                props.setEditReimb(response);
-                                }}>edit</Link></td>:
+                            <td><Link to={'/edash/edit-reimb'} onClick={ () => {
+                                props.setEditReimb({...reimb})}}>edit</Link></td>:
                             <></>
                         }
                     </tr>
