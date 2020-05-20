@@ -61,7 +61,7 @@ let AllReimbsComponent = (props: IAllReimbsProps) => {
         };
 
         fetchData()
-    }, [type, status]);
+    }, [type, status, reimbRows]);
 
     return (
         !props.authUser?

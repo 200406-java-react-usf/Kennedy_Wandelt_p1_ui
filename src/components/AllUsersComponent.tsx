@@ -47,7 +47,7 @@ let AllUsersComponent = (props: IUsersProps) => {
         };
 
         fetchData()
-    }, []);
+    }, [userRows]);
 
 
 
