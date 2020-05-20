@@ -16,15 +16,18 @@ let FDashComponent = (props: IFDashProps) => {
 
     return (
       <>
-      <h1>Financial Manager Dashboard</h1>
-      <Link to='/fmdash/reimb-all'>All Reimbs</Link>
-        <Switch>
-          <Route path={"/fmdash/reimb-all"} render={() => <AllReimbsComponent authUser={props.authUser} setThisReimb={setThisReimb}/> } />
-          {thisReimb?
-                <Route path={`/fmdash/reimb-details-${thisReimb.reimb_id}`} render={() => <ReimbDetailsComponent authUser={props.authUser} thisReimb={thisReimb}/> } />
-                :<></>
-          }
-        </Switch>
+      <div className="background-dash">
+      <div style={{paddingTop: '2%', paddingLeft: '3%', paddingRight: '3%', paddingBottom: '2%', marginBottom: '2%', backgroundColor:'rgba(255, 255, 255, 0.651)', width: '100%'}}>
+        <h1 className="display-4">Financial Manager Dashboard</h1>
+        </div>
+          <Switch>
+            <Route path={"/fmdash/reimb-all"} render={() => <AllReimbsComponent authUser={props.authUser} setThisReimb={setThisReimb}/> } />
+            {thisReimb?
+                  <Route path={`/fmdash/reimb-details-${thisReimb.reimb_id}`} render={() => <ReimbDetailsComponent authUser={props.authUser} thisReimb={thisReimb}/> } />
+                  :<></>
+            }
+          </Switch>
+        </div>
       </>
     );
   }

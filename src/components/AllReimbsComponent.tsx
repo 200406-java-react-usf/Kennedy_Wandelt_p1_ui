@@ -61,13 +61,14 @@ let AllReimbsComponent = (props: IAllReimbsProps) => {
         };
 
         fetchData()
-    }, [type, status]);
+    }, [type, status, reimbRows]);
 
     return (
         !props.authUser?
         <Redirect to='/login'/>:
         <>
-            <table className="table table-striped">
+        <div style={{ marginTop: 0, marginLeft: '3%', marginRight: '3%', marginBottom: '30%', backgroundColor:'rgba(255, 255, 255, 0.651)'}} className='border-radius'>
+            <table className="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -101,6 +102,7 @@ let AllReimbsComponent = (props: IAllReimbsProps) => {
                     reimbs}
                 </tbody>
             </table>
+        </div>
         </>
     );
 

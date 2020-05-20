@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Typography, FormControl, InputLabel, Input, Button, makeStyles} from '@material-ui/core';
 import { updateUser } from '../remote/user-service';
 import { User } from '../models/user';
+import { Link } from 'react-router-dom';
 
 
 export interface IEditUserProps {
@@ -92,6 +93,7 @@ let EditUserComponent = (props: IEditUserProps) => {
 
     return (
         <>
+        <div style={{ marginTop: 0, marginLeft: '28%', marginRight: '28%', marginBottom: '13%', backgroundColor:'rgba(255, 255, 255, 0.651)'}} className='border-radius'>
         <div className={classes.loginContainer}>
             <form className={classes.loginForm}>
                 <Typography align="left" variant="h4">New User</Typography>
@@ -154,7 +156,7 @@ let EditUserComponent = (props: IEditUserProps) => {
                 </FormControl>
 
                 <br/><br/>
-                <Button onClick={change} variant="contained" color="primary" size="medium">Save changes</Button>
+                <Link onClick={change} to='/adash/all-users' className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#3340a1", borderColor: "#3340a1"}}>Save changes</Link>
                 <br/><br/>
                 {
                     errorMessage 
@@ -164,6 +166,7 @@ let EditUserComponent = (props: IEditUserProps) => {
                     <></>
                 }
             </form>
+        </div>
         </div>
         </>
     );

@@ -61,46 +61,60 @@ let ReimbDetailsComponent = (props: IReimbDetailsProps) => {
 
     return(
         <>
-        <h1>{header}</h1>
-        <div>
-        <p>
-            <span>Amount: $</span><span>{props.thisReimb.amount}</span>
-        </p>
-        <p>
-            <span>Time submitted: </span><span>{props.thisReimb.submitted}</span>
-        </p>
-        <p>
-            <span>Time resolved: </span><span>{props.thisReimb.resolved? props.thisReimb.resolved: 'N/A'}</span>
-        </p>
-        <p>
-           <span>Description: </span><span>{props.thisReimb.description}</span>
-        </p>
-        <p>
-            <span>Author Id#</span><span>{props.thisReimb.author_id}</span>
-        </p>
-        <p>
-            <span>Resolver Id#: </span><span>{props.thisReimb.resolver_id? props.thisReimb.resolver_id: 'N/A'}</span>
-        </p>
-        <p>
-            <span>Status: </span><span>{props.thisReimb.reimb_status}</span>
-        </p>
-        <p>
-            <span>Type: </span><span>{props.thisReimb.reimb_type}</span>
-        </p>
-        </div>
+        <div style={{ marginTop: 0, marginLeft: '28%', marginRight: '28%', marginBottom: '13%', backgroundColor:'rgba(255, 255, 255, 0.651)'}} className='border-radius'>
+
+        <table className="table table-borderless" style={{marginBottom: '20px'}}>
+            <thead>
+                <tr>
+                <th scope="col">{header}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th scope="row">Amount:</th>
+                <td>{props.thisReimb.amount}</td>
+                </tr>
+                <tr>
+                <th scope="row">Description:</th>
+                <td>{props.thisReimb.description}</td>
+                </tr>
+                <tr>
+                <th scope="row">Time submitted:</th>
+                <td>{props.thisReimb.submitted}</td>
+                </tr>
+                <tr>
+                <th scope="row">Author Id:</th>
+                <td>{props.thisReimb.author_id}</td>
+                </tr>
+                <tr>
+                <th scope="row">Type:</th>
+                <td>{props.thisReimb.reimb_type}</td>
+                </tr>
+                <tr>
+                <th scope="row">Status:</th>
+                <td>{props.thisReimb.reimb_status}</td>
+                </tr>
+                <tr>
+                <th scope="row">Time resolved:</th>
+                <td>{props.thisReimb.resolved? props.thisReimb.resolved: 'N/A'}</td>
+                </tr>
+                <tr>
+                <th scope="row">Resolver Id:</th>
+                <td>{props.thisReimb.resolver_id? props.thisReimb.resolver_id: 'N/A'}</td>
+                </tr>
+            </tbody>
+        </table>
 
         {!props.thisReimb.resolved && props.authUser.role_name === "fmanager"?
             <>
-            <button onClick={approveReimb}>Approve</button>
-            <button onClick={denyReimb}>Deny</button>
+            <div style={{justifyContent: 'center', display: 'flex', alignItems: 'center', marginBottom: '20px'}}>
+            <Link onClick={approveReimb} to='/fmdash/reimb-all' className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#387341", borderColor: "#387341", marginRight: '10px', marginBottom: '20px'}}>Approve</Link>
+            <Link onClick={denyReimb} to='/fmdash/reimb-all' className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#e00d0d", borderColor: "#e00d0d", marginBottom: '20px'}}>Deny</Link>
+            </div>
             </>:
             <></>
         }
-        {props.thisReimb.reimb_status === 'pending'?
-            <td><Link to={'/'}>edit</Link></td>:
-            <></>
-        }
-
+        </div>
         </>
     )
 
