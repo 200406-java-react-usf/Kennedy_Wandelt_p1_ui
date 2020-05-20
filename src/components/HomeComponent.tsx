@@ -26,7 +26,7 @@ function HomeComponent(props: IHomeProps){
                         </>:
                         <>
                         <p>To create, view, and edit reimbursements go to MyReimbursements!</p>
-                        <Link className="btn btn-primary btn-m" style={{color: 'white', backgroundColor: "#3340a1", borderColor: "#3340a1"}} to="/my-reimbs" role="button">My Reimbursements</Link>
+                        <Link className="btn btn-primary btn-m" style={{color: 'white', backgroundColor: "#3340a1", borderColor: "#3340a1"}} to="/edash/my-reimbs" role="button">My Reimbursements</Link>
                         </>
                     }
                 </div>

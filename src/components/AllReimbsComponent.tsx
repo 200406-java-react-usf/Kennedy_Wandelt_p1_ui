@@ -67,7 +67,7 @@ let AllReimbsComponent = (props: IAllReimbsProps) => {
         !props.authUser?
         <Redirect to='/login'/>:
         <>
-        <div style={{marginTop: '2%', marginLeft: '3%', marginRight: '3%'}}>
+        <div style={{ marginTop: 0, marginLeft: '3%', marginRight: '3%', marginBottom: '30%', backgroundColor:'rgba(255, 255, 255, 0.651)'}}>
             <table className="table table-striped table-hover">
                 <thead>
                     <tr>

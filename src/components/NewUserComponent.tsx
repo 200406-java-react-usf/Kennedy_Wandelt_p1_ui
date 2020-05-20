@@ -3,7 +3,7 @@ import {Typography, FormControl, InputLabel, Input, Button, NativeSelect, makeSt
 import { addNewUser } from '../remote/user-service';
 import { User } from '../models/user';
 import { NewUser } from '../models/newUser'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 
 export interface IRegProps {
@@ -143,7 +143,7 @@ function NewUserComponent (props: IRegProps) {
                 </FormControl>
 
                 <br/><br/>
-                <Button onClick={register} variant="contained" color="primary" size="medium">Create User</Button>
+                <Link onClick={register} to='/adash/all-users' className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#3340a1", borderColor: "#3340a1"}}>Create User</Link>
                 <br/><br/>
                 {
                     errorMessage 

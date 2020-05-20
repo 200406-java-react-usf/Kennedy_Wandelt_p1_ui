@@ -18,7 +18,7 @@ let ADashComponent = (props: IADashProps) => {
       <>
       <div className="background-dash">
         <div style={{paddingTop: '2%', paddingLeft: '3%', paddingRight: '3%', paddingBottom: '2%', marginBottom: '2%', backgroundColor:'rgba(255, 255, 255, 0.651)', width: '100%'}}>
-        <h1>Admin Dashboard</h1>
+        <h1 className="display-4">Admin Dashboard</h1>
         <Link to='/adash/all-users'className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#3340a1", borderColor: "#3340a1"}}>All Users</Link>
         <span>  </span>
         <Link to='/adash/new-user'className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#3340a1", borderColor: "#3340a1"}}>New User</Link>

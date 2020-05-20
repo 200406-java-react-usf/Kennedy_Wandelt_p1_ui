@@ -25,7 +25,7 @@ let EDashComponent = (props: IEDashProps) => {
         <>
         <div className="background-dash">
         <div style={{paddingTop: '2%', paddingLeft: '3%', paddingRight: '3%', paddingBottom: '2%', marginBottom: '2%', backgroundColor:'rgba(255, 255, 255, 0.651)', width: '100%'}}>
-            <h1>My Reimbursements</h1>
+            <h1 className="display-4">My Reimbursements</h1>
             <Link to={'/edash/new-reimb'} className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#3340a1", borderColor: "#3340a1"}}>New Reimbursement</Link>
             <span>  </span>
             <Link to='/edash/my-reimbs' className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#3340a1", borderColor: "#3340a1"}}>All reimbursements</Link>

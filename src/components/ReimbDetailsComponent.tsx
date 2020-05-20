@@ -61,7 +61,7 @@ let ReimbDetailsComponent = (props: IReimbDetailsProps) => {
 
     return(
         <>
-        <Link to='/fmdash/reimb-all' className="btn btn-primary btn-s" role="button" style={{color: 'white', backgroundColor: "#3340a1", borderColor: "#3340a1"}}>All Reimbs</Link>
+        <div style={{ marginTop: 0, marginLeft: '28%', marginRight: '28%', marginBottom: '13%', backgroundColor:'rgba(255, 255, 255, 0.651)'}}>
         <h1>{header}</h1>
         <div>
         <p>
@@ -92,16 +92,16 @@ let ReimbDetailsComponent = (props: IReimbDetailsProps) => {
 
         {!props.thisReimb.resolved && props.authUser.role_name === "fmanager"?
             <>
-            <button onClick={approveReimb}>Approve</button>
-            <button onClick={denyReimb}>Deny</button>
+            <Link onClick={approveReimb} to='/adash/all-users' className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#387341", borderColor: "#387341"}}>Approve</Link>
+            <Link onClick={denyReimb} to='/adash/all-users' className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#e00d0d", borderColor: "#e00d0d"}}>Deny</Link>
             </>:
             <></>
         }
-        {props.thisReimb.reimb_status === 'pending'?
+        {props.thisReimb.reimb_status === 'pending' && props.authUser.ers_user_id == props.thisReimb.author_id?
             <td><Link to={'/'}>edit</Link></td>:
             <></>
         }
-
+        </div>
         </>
     )
 
