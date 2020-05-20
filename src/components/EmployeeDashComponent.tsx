@@ -23,9 +23,13 @@ let EDashComponent = (props: IEDashProps) => {
         <Redirect to="/home"/>:
         
         <>
+        <div className="background-dash">
+        <div style={{paddingTop: '2%', paddingLeft: '3%', paddingRight: '3%', paddingBottom: '2%', marginBottom: '2%', backgroundColor:'rgba(255, 255, 255, 0.651)', width: '100%'}}>
             <h1>My Reimbursements</h1>
-            <button><Link to={'/edash/new-reimb'}>New Reimbursement</Link></button>
-            <button><Link to='/edash/my-reimbs'>All reimbursements</Link></button>
+            <Link to={'/edash/new-reimb'} className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#3340a1", borderColor: "#3340a1"}}>New Reimbursement</Link>
+            <span>  </span>
+            <Link to='/edash/my-reimbs' className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#3340a1", borderColor: "#3340a1"}}>All reimbursements</Link>
+        </div>
             <Switch>
                 <Route path="/edash/edit-reimb" render={() => <EditReimbComponent authUser={props.authUser} editReimb={editReimb}/>}/>
                 <Route path="/edash/new-reimb" render={() => <NewReimbComponent authUser={props.authUser} />} />
@@ -35,6 +39,7 @@ let EDashComponent = (props: IEDashProps) => {
                         :<></>
                 }
             </Switch>
+        </div>
         </>
     );
   }

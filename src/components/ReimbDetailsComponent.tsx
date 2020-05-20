@@ -61,6 +61,7 @@ let ReimbDetailsComponent = (props: IReimbDetailsProps) => {
 
     return(
         <>
+        <Link to='/fmdash/reimb-all' className="btn btn-primary btn-s" role="button" style={{color: 'white', backgroundColor: "#3340a1", borderColor: "#3340a1"}}>All Reimbs</Link>
         <h1>{header}</h1>
         <div>
         <p>

@@ -85,7 +85,7 @@ function LoginComponent(props: ILoginProps) {
                                     placeholder="Enter your password"/>
                             </FormControl>
                             <br/><br/>
-                            <a className="btn btn-primary btn-lg" style={{color: 'white'}} onKeyDown={onKeyDown} onClick={login} role="button">Login</a>
+                            <a className="btn btn-primary btn-m" style={{color: 'white', backgroundColor: "#3340a1", borderColor: "#3340a1"}} onKeyDown={onKeyDown} onClick={login} role="button">Login</a>
                             <br/><br/>
                             {
                                 errorMessage 

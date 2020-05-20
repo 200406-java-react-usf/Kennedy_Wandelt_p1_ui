@@ -10,7 +10,7 @@
     background-image: url(https://img.wallpapersafari.com/desktop/1920/1080/20/40/KdwIsT.jpg);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
     height: 100%;
     background-size: 100%;
     padding-top: 5%;
@@ -20,7 +20,7 @@
     background-image: url(https://img.wallpapersafari.com/desktop/1920/1080/20/40/KdwIsT.jpg);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
     height: 100%;
     background-size: 100%;
     padding-top: 1%;
@@ -33,6 +33,15 @@
     margin-top: 8%;
     border-radius: 7px;
 }
-.btn-primary {
-    background-color: "#EF950F" !important;
+.btn-primary, .btn-promary:hover, .btn-primary:active, .btn-primary:visited, .btn {
+    background-color: "#3340a1" !important;
+    border-color: "#3340a1" !important;
+}
+
+.background-dash {
+    background: url(https://img.wallpapersafari.com/desktop/1920/1080/20/40/KdwIsT.jpg) no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    overFlow: hidden;
+
 }

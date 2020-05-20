@@ -58,8 +58,10 @@ let MyReimbsComponent = (props: IMyReimbsProps) => {
     return (
         !props.authUser?
         <Redirect to='/login'/>:
+
         <>
-            <table className="table table-striped">
+        <div style={{ marginTop: 0, marginLeft: '3%', marginRight: '3%', marginBottom: '30%', backgroundColor:'rgba(255, 255, 255, 0.651)'}}>
+            <table className="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -77,6 +79,7 @@ let MyReimbsComponent = (props: IMyReimbsProps) => {
                     reimbs}
                 </tbody>
             </table>
+        </div>
         </>
     );
 

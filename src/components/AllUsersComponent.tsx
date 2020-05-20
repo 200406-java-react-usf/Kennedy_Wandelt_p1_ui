@@ -35,9 +35,9 @@ let AllUsersComponent = (props: IUsersProps) => {
                         <td><Link to={'/adash/edit-user'} onClick={ () => {
                             props.setEditUser({...user})}}>edit</Link>
                             <span> / </span>
-                            <a onClick={ async () => {
+                            <Link to={'/adash/all-users'} onClick={ async () => {
                             await deleteUser(user.ers_user_id);    
-                            }} >delete</a>
+                            }} >delete</Link>
                         </td>
                     </tr>
                 )
@@ -55,7 +55,8 @@ let AllUsersComponent = (props: IUsersProps) => {
         !props.authUser?
         <Redirect to='/login'/>:
         <>
-            <table className="table table-striped">
+        <div style={{ marginTop: 0, marginLeft: '3%', marginRight: '3%', marginBottom: '13%', backgroundColor:'rgba(255, 255, 255, 0.651)'}}>
+            <table className="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -65,12 +66,14 @@ let AllUsersComponent = (props: IUsersProps) => {
                         <th scope="col">Password</th>
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
+                        <th scope='col'> </th>
                     </tr>
                 </thead>
                 <tbody>
                     {users}
                 </tbody>
             </table>
+        </div>
         </>
     );
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import './HomeComponent.css';
 import { User } from '../models/user';
-import { getUsers } from '../remote/user-service'
 import { Link } from 'react-router-dom'
 
 interface IHomeProps {
@@ -19,10 +18,16 @@ function HomeComponent(props: IHomeProps){
                     }
                     <p className="lead">A system where employees, admin, and financial managers can manage reimbursements</p>
                     <hr className="my-4"/>
-                    <p>Employees can access their own reimbursements or make new ones which can be approved by financial managers. Login to see your reimbursements!</p>
+                    
                     {!props.authUser ?
-                        <Link className="btn btn-primary btn-lg" to="/login" role="button">Login</Link>:
-                        <Link className="btn btn-primary btn-lg" to="/my-reimbs" role="button">My Reimbursements</Link>
+                        <>
+                        <p>Employees can access their own reimbursements or make new ones which can be approved by financial managers. Login to see your reimbursements!</p>
+                        <Link className="btn btn-primary btn-m" style={{color: 'white', backgroundColor: "#3340a1", borderColor: "#3340a1"}} to="/login" role="button">Login</Link>
+                        </>:
+                        <>
+                        <p>To create, view, and edit reimbursements go to MyReimbursements!</p>
+                        <Link className="btn btn-primary btn-m" style={{color: 'white', backgroundColor: "#3340a1", borderColor: "#3340a1"}} to="/my-reimbs" role="button">My Reimbursements</Link>
+                        </>
                     }
                 </div>
             </div>

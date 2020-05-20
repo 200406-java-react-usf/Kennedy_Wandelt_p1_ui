@@ -3,6 +3,7 @@ import {Typography, FormControl, InputLabel, Input, Button, NativeSelect, makeSt
 import { addNewUser } from '../remote/user-service';
 import { User } from '../models/user';
 import { NewUser } from '../models/newUser'
+import { Redirect } from 'react-router-dom';
 
 
 export interface IRegProps {
@@ -79,6 +80,7 @@ function NewUserComponent (props: IRegProps) {
 
     return (
         <>
+        <div style={{ marginTop: 0, marginLeft: '28%', marginRight: '28%', marginBottom: '13%', backgroundColor:'rgba(255, 255, 255, 0.651)'}}>
         <div className={classes.loginContainer}>
             <form className={classes.loginForm}>
                 <Typography align="left" variant="h4">New User</Typography>
@@ -151,6 +153,7 @@ function NewUserComponent (props: IRegProps) {
                     <></>
                 }
             </form>
+        </div>
         </div>
         </>
     );
