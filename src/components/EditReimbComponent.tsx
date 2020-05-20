@@ -4,6 +4,7 @@ import { makeStyles, Typography, FormControl, InputLabel, Input, Button, TextFie
 import { NewReimbursement } from '../models/newReimb';
 import { addNewReimb, updateReimb } from '../remote/reimb-service';
 import { Reimbursement } from '../models/reimbs';
+import { Link } from 'react-router-dom';
 
 
 
@@ -72,6 +73,7 @@ let EditReimbComponent = (props: IEditReimbProps) => {
 
     return (
         <>
+        <div style={{ marginTop: 0, marginLeft: '28%', marginRight: '28%', marginBottom: '13%', backgroundColor:'rgba(255, 255, 255, 0.651)'}} className='border-radius'>
         <div className={classes.loginContainer}>
             <form className={classes.loginForm}>
                 <Typography align="left" variant="h4">New Reimbursement</Typography>
@@ -103,7 +105,7 @@ let EditReimbComponent = (props: IEditReimbProps) => {
                 </FormControl>
 
                 <br/><br/>
-                <Button onClick={change} variant="contained" color="primary" size="medium">Save changes</Button>
+                <Link onClick={change} to='/edash/my-reimbs' className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#3340a1", borderColor: "#3340a1"}}>Save changes</Link>
                 <br/><br/>
                 {
                     errorMessage 
@@ -113,6 +115,7 @@ let EditReimbComponent = (props: IEditReimbProps) => {
                     <></>
                 }
             </form>
+        </div>
         </div>
         </>
     );

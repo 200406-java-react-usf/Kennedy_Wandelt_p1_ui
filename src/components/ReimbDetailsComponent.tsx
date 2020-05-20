@@ -61,7 +61,7 @@ let ReimbDetailsComponent = (props: IReimbDetailsProps) => {
 
     return(
         <>
-        <div style={{ marginTop: 0, marginLeft: '28%', marginRight: '28%', marginBottom: '13%', backgroundColor:'rgba(255, 255, 255, 0.651)'}}>
+        <div style={{ marginTop: 0, marginLeft: '28%', marginRight: '28%', marginBottom: '13%', backgroundColor:'rgba(255, 255, 255, 0.651)'}} className='border-radius'>
         <h1>{header}</h1>
         <div>
         <p>
@@ -92,8 +92,8 @@ let ReimbDetailsComponent = (props: IReimbDetailsProps) => {
 
         {!props.thisReimb.resolved && props.authUser.role_name === "fmanager"?
             <>
-            <Link onClick={approveReimb} to='/adash/all-users' className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#387341", borderColor: "#387341"}}>Approve</Link>
-            <Link onClick={denyReimb} to='/adash/all-users' className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#e00d0d", borderColor: "#e00d0d"}}>Deny</Link>
+            <Link onClick={approveReimb} to='/fmdash/reimb-all' className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#387341", borderColor: "#387341"}}>Approve</Link>
+            <Link onClick={denyReimb} to='/fmdash/reimb-all' className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#e00d0d", borderColor: "#e00d0d"}}>Deny</Link>
             </>:
             <></>
         }

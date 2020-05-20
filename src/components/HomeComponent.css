@@ -45,3 +45,6 @@
     overFlow: hidden;
 
 }
+.border-radius {
+    border-radius: 7px !important;
+}
