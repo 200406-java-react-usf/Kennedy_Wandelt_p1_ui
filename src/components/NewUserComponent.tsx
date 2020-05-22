@@ -3,7 +3,7 @@ import {Typography, FormControl, InputLabel, Input, Button, NativeSelect, makeSt
 import { addNewUser } from '../remote/user-service';
 import { User } from '../models/user';
 import { NewUser } from '../models/newUser'
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect, Link, Router } from 'react-router-dom';
 
 
 export interface IRegProps {
@@ -73,12 +73,18 @@ function NewUserComponent (props: IRegProps) {
         if(username === '' || password === '' || firstname === '' || lastname === '' || email === ''){
             setErrorMessage('All fields are required to create a new user')
         }
-        let user = new NewUser(username, password, firstname, lastname, email, +role);
+        try{
+            let user = new NewUser(username, password, firstname, lastname, email, +role);
 
-        let newUser = await addNewUser(user);
+            let newUser = await addNewUser(user);
+        } catch (e) {
+            setErrorMessage('Could not create user, change username/email and try again.')
+        }
     }
 
     return (
+        !props.authUser?
+        <Redirect to='/login'/>:
         <>
         <div style={{ marginTop: 0, marginLeft: '28%', marginRight: '28%', marginBottom: '13%', backgroundColor:'rgba(255, 255, 255, 0.651)'}} className='border-radius'>
         <div className={classes.loginContainer}>
@@ -143,7 +149,7 @@ function NewUserComponent (props: IRegProps) {
                 </FormControl>
 
                 <br/><br/>
-                <Link onClick={register} to='/adash/all-users' className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#3340a1", borderColor: "#3340a1"}}>Create User</Link>
+                    <Link onClick={register} to='/adash/all-users' className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#3340a1", borderColor: "#3340a1"}}>Create User</Link>
                 <br/><br/>
                 {
                     errorMessage 

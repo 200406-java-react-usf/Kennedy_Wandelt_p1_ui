@@ -8,7 +8,7 @@ import MyReimbsComponent from './MyReimbsComponent';
 import NewReimbComponent from './NewReimbursementComponent';
 import EditReimbComponent from './EditReimbComponent';
 
-interface IEDashProps {
+export interface IEDashProps {
     authUser: User
 }
 
@@ -20,7 +20,7 @@ let EDashComponent = (props: IEDashProps) => {
 
     return (
         !props.authUser?
-        <Redirect to="/home"/>:
+        <Redirect to="/login"/>:
         
         <>
         <div className="background-dash">

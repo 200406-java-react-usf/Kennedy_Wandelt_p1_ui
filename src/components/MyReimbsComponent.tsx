@@ -7,7 +7,7 @@ import { Redirect, Link } from 'react-router-dom';
 
 
 
-interface IMyReimbsProps {
+export interface IMyReimbsProps {
     authUser: User
     setThisReimb: (reimb: Reimbursement) => void; 
     setEditReimb: (reimb: Reimbursement) => void;

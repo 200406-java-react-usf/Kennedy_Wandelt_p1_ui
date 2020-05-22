@@ -7,7 +7,7 @@ import { InputLabel } from '@material-ui/core';
 
 
 
-interface IAllReimbsProps {
+export interface IAllReimbsProps {
     authUser: User
     setThisReimb: (reimb: Reimbursement) => void 
 }
@@ -46,7 +46,10 @@ let AllReimbsComponent = (props: IAllReimbsProps) => {
 
                             <td>${reimb.amount}</td>
                             <td>{reimb.submitted}</td>
-                            <td>{reimb.resolved? reimb.resolved: <Link to={`/fmdash/reimb-details-${reimb.reimb_id}`}>resolve</Link>}</td>
+                            <td>{reimb.resolved? reimb.resolved: <Link to={`/fmdash/reimb-details-${reimb.reimb_id}`} onClick={ async () => {
+                                    const response = await getReimbDetails(reimb.reimb_id);
+                                    props.setThisReimb(response);
+                            }}>resolve</Link>}</td>
                             <td>{reimb.description}</td>
                             <td>{reimb.author_id}</td>
                             <td>{reimb.resolver_id? reimb.resolver_id: <>N/A</>}</td>
