@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 
 
-interface IEditReimbProps {
+export interface IEditReimbProps {
     authUser: User
     editReimb: Reimbursement
 } 

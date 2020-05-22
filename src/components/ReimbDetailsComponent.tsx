@@ -5,7 +5,7 @@ import { resolve } from 'dns';
 import { updateReimb } from '../remote/reimb-service';
 import { Link } from 'react-router-dom';
 
-interface IReimbDetailsProps {
+export interface IReimbDetailsProps {
     authUser: User
     thisReimb: Reimbursement
 }

@@ -6,7 +6,7 @@ import { Redirect, Link } from 'react-router-dom';
 
 
 
-interface IUsersProps {
+export interface IUsersProps {
     authUser: User;
     setEditUser: (user: User) => void;
 }

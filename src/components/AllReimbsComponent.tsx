@@ -7,7 +7,7 @@ import { InputLabel } from '@material-ui/core';
 
 
 
-interface IAllReimbsProps {
+export interface IAllReimbsProps {
     authUser: User
     setThisReimb: (reimb: Reimbursement) => void 
 }

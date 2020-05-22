@@ -8,7 +8,7 @@ import MyReimbsComponent from './MyReimbsComponent';
 import NewReimbComponent from './NewReimbursementComponent';
 import EditReimbComponent from './EditReimbComponent';
 
-interface IEDashProps {
+export interface IEDashProps {
     authUser: User
 }
 

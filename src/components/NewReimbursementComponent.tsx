@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 
 
-interface INewReimbProps {
+export interface INewReimbProps {
     authUser: User
 } 
 

@@ -3,7 +3,7 @@ import './HomeComponent.css';
 import { User } from '../models/user';
 import { Link } from 'react-router-dom'
 
-interface IHomeProps {
+export interface IHomeProps {
     authUser: User;
 }
 

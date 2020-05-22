@@ -5,7 +5,7 @@ import {Switch, Route, Link } from 'react-router-dom';
 import AllReimbsComponent from './AllReimbsComponent';
 import ReimbDetailsComponent from './ReimbDetailsComponent';
 
-interface IFDashProps {
+export interface IFDashProps {
     authUser: User
 }
 

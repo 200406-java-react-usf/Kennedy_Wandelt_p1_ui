@@ -5,7 +5,7 @@ import NewUserComponent from './NewUserComponent';
 import AllUsersComponent from './AllUsersComponent';
 import EditUserComponent from './EditUserComponent';
 
-interface IADashProps {
+export interface IADashProps {
     authUser: User
 }
 
