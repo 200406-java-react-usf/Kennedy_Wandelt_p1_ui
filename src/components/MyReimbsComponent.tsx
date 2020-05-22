@@ -53,7 +53,7 @@ let MyReimbsComponent = (props: IMyReimbsProps) => {
         };
 
         fetchData()
-    }, [reimbRows]);
+    }, [reimbs, reimbRows]);
 
     return (
         !props.authUser?
