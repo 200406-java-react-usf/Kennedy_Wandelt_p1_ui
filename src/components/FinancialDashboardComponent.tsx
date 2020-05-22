@@ -1,7 +1,7 @@
 import React, {useState } from 'react';
 import { User } from '../models/user';
 import { Reimbursement } from '../models/reimbs'
-import {Switch, Route, Link } from 'react-router-dom';
+import {Switch, Route, Link, Redirect } from 'react-router-dom';
 import AllReimbsComponent from './AllReimbsComponent';
 import ReimbDetailsComponent from './ReimbDetailsComponent';
 
@@ -15,6 +15,8 @@ let FDashComponent = (props: IFDashProps) => {
   
 
     return (
+      !props.authUser?
+      <Redirect to='/login'/>:
       <>
       <div className="background-dash">
       <div style={{paddingTop: '2%', paddingLeft: '3%', paddingRight: '3%', paddingBottom: '2%', marginBottom: '2%', backgroundColor:'rgba(255, 255, 255, 0.651)', width: '100%'}}>

@@ -73,12 +73,18 @@ function NewUserComponent (props: IRegProps) {
         if(username === '' || password === '' || firstname === '' || lastname === '' || email === ''){
             setErrorMessage('All fields are required to create a new user')
         }
-        let user = new NewUser(username, password, firstname, lastname, email, +role);
+        try{
+            let user = new NewUser(username, password, firstname, lastname, email, +role);
 
-        let newUser = await addNewUser(user);
+            let newUser = await addNewUser(user);
+        } catch (e) {
+            setErrorMessage('Could not create user, change username/email and try again.')
+        }
     }
 
     return (
+        !props.authUser?
+        <Redirect to='/login'/>:
         <>
         <div style={{ marginTop: 0, marginLeft: '28%', marginRight: '28%', marginBottom: '13%', backgroundColor:'rgba(255, 255, 255, 0.651)'}} className='border-radius'>
         <div className={classes.loginContainer}>

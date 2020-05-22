@@ -3,7 +3,7 @@ import { User } from '../models/user';
 import { makeStyles, Typography, FormControl, InputLabel, Input, Button, TextField, InputAdornment } from '@material-ui/core';
 import { NewReimbursement } from '../models/newReimb';
 import { addNewReimb } from '../remote/reimb-service';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 
 
@@ -62,6 +62,8 @@ let NewReimbComponent = (props: INewReimbProps) => {
     }
 
     return (
+        !props.authUser?
+        <Redirect to='/login'/>:
         <>
         <div style={{ marginTop: 0, marginLeft: '28%', marginRight: '28%', marginBottom: '13%', backgroundColor:'rgba(255, 255, 255, 0.651)'}} className='border-radius'>
         <div className={classes.loginContainer}>

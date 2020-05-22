@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Typography, FormControl, InputLabel, Input, Button, makeStyles} from '@material-ui/core';
 import { updateUser } from '../remote/user-service';
 import { User } from '../models/user';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 
 export interface IEditUserProps {
@@ -92,6 +92,8 @@ let EditUserComponent = (props: IEditUserProps) => {
     }
 
     return (
+        !props.authUser?
+        <Redirect to='/login'/>:
         <>
         <div style={{ marginTop: 0, marginLeft: '28%', marginRight: '28%', marginBottom: '13%', backgroundColor:'rgba(255, 255, 255, 0.651)'}} className='border-radius'>
         <div className={classes.loginContainer}>

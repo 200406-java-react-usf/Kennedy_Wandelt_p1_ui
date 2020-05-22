@@ -4,7 +4,7 @@ import { makeStyles, Typography, FormControl, InputLabel, Input, Button, TextFie
 import { NewReimbursement } from '../models/newReimb';
 import { addNewReimb, updateReimb } from '../remote/reimb-service';
 import { Reimbursement } from '../models/reimbs';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 
 
@@ -72,6 +72,8 @@ let EditReimbComponent = (props: IEditReimbProps) => {
     }
 
     return (
+        !props.authUser?
+        <Redirect to='/login'/>:
         <>
         <div style={{ marginTop: 0, marginLeft: '28%', marginRight: '28%', marginBottom: '13%', backgroundColor:'rgba(255, 255, 255, 0.651)'}} className='border-radius'>
         <div className={classes.loginContainer}>

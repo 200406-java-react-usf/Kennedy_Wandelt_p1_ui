@@ -20,7 +20,7 @@ let EDashComponent = (props: IEDashProps) => {
 
     return (
         !props.authUser?
-        <Redirect to="/home"/>:
+        <Redirect to="/login"/>:
         
         <>
         <div className="background-dash">

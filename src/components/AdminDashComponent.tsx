@@ -1,6 +1,6 @@
 import React, {useState } from 'react';
 import { User } from '../models/user';
-import {Switch, Route, Link } from 'react-router-dom';
+import {Switch, Route, Link, Redirect } from 'react-router-dom';
 import NewUserComponent from './NewUserComponent';
 import AllUsersComponent from './AllUsersComponent';
 import EditUserComponent from './EditUserComponent';
@@ -15,6 +15,8 @@ let ADashComponent = (props: IADashProps) => {
   
 
     return (
+      !props.authUser?
+      <Redirect to='/login'/>:
       <>
       <div className="background-dash">
         <div style={{paddingTop: '2%', paddingLeft: '3%', paddingRight: '3%', paddingBottom: '2%', marginBottom: '2%', backgroundColor:'rgba(255, 255, 255, 0.651)', width: '100%'}}>

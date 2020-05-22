@@ -3,7 +3,7 @@ import { User } from '../models/user';
 import { Reimbursement } from '../models/reimbs';
 import { resolve } from 'dns';
 import { updateReimb } from '../remote/reimb-service';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 export interface IReimbDetailsProps {
     authUser: User
@@ -60,6 +60,8 @@ let ReimbDetailsComponent = (props: IReimbDetailsProps) => {
     let header = `Reimbursement #${props.thisReimb.reimb_id}`;
 
     return(
+        !props.authUser?
+        <Redirect to='/login'/>:
         <>
         <div style={{ marginTop: 0, marginLeft: '28%', marginRight: '28%', marginBottom: '13%', backgroundColor:'rgba(255, 255, 255, 0.651)'}} className='border-radius'>
 
@@ -108,7 +110,7 @@ let ReimbDetailsComponent = (props: IReimbDetailsProps) => {
         {!props.thisReimb.resolved && props.authUser.role_name === "fmanager"?
             <>
             <div style={{justifyContent: 'center', display: 'flex', alignItems: 'center', marginBottom: '20px'}}>
-            <Link onClick={approveReimb} to='/fmdash/reimb-all' className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#387341", borderColor: "#387341", marginRight: '10px', marginBottom: '20px'}}>Approve</Link>
+            <Link onClick={approveReimb} to='/fmdash/reimb-all' className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#32a84a", borderColor: "#32a84a", marginRight: '10px', marginBottom: '20px'}}>Approve</Link>
             <Link onClick={denyReimb} to='/fmdash/reimb-all' className="btn btn-primary btn-m" role="button" style={{color: 'white', backgroundColor: "#e00d0d", borderColor: "#e00d0d", marginBottom: '20px'}}>Deny</Link>
             </div>
             </>:
